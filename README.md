@@ -23,10 +23,3 @@ The site files get built into `./_site/`.
 ```bash
 npm run build
 ```
-
-## Usability
-
-There should be a lot of quality of life features, such as:
-
-- when you enter a letter, you automatically move to the next input (maybe not necessary?)
-- when you press backspace (with empty cell), you move to previous cell
