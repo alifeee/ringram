@@ -1,6 +1,9 @@
 const yaml = require("js-yaml");
 
 module.exports = function (eleventyConfig) {
+  // copy static files
+  eleventyConfig.addPassthroughCopy({ public: "/" });
+
   // add support for reading Yaml from `/_data`
   eleventyConfig.addDataExtension("yaml", (contents) =>
     yaml.safeLoad(contents)
