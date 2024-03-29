@@ -319,12 +319,20 @@ pagination:
     </main>
     <footer>
         {{#if pagination.previous}}
-            <a href="{{pagination.previous}}">Previous</a>
+            {{#if (eq pagination.pageNumber 1)}}
+            <a href="../">Previous</a>
+            {{else}}
+            <a href="../{{add pagination.pageNumber -1}}">Previous</a>
+            {{/if}}
             {{else}}
             <span>Previous</span>
         {{/if}}
         {{#if pagination.next}}
-            <a href="{{pagination.next}}">Next</a>
+            {{#if (eq pagination.pageNumber 0)}}
+            <a href="./{{add pagination.pageNumber 1}}">Next</a>
+            {{else}}
+            <a href="../{{add pagination.pageNumber 1}}">Next</a>
+            {{/if}}
             {{else}}
             <span>Next</span>
         {{/if}}

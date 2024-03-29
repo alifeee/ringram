@@ -9,4 +9,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addHandlebarsHelper("list", (len) => {
     return new Array(len).fill(0);
   });
+
+  eleventyConfig.addHandlebarsHelper("add", (n1, n2) => {
+    return n1 + n2;
+  });
+
+  eleventyConfig.addHandlebarsHelper("eq", (n1, n2) => {
+    return n1 === n2;
+  });
 };
