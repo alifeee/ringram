@@ -467,7 +467,9 @@ pagination:
             {{#if this}}
             <input type="text" value="{{this}}" disabled x-model="letter{{@index}}" />
             {{else}}
-            <input type="text" maxlength="1" x-model="letter{{@index}}" />
+            {{!-- go to prev input on backspace --}}
+            {{!-- go to next input on fill --}}
+            <input type="text" maxlength="1" x-model="letter{{@index}}" x-on:keydown.backspace.throttle="if ($event.target.value === '') {$event.target.previousElementSibling.focus(); }" x-on:input="if ($event.target.value !== '') {$event.target.nextElementSibling.focus(); }" />
             {{/if}}
             {{/each}}
         </form>
