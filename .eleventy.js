@@ -6,6 +6,10 @@ module.exports = function (eleventyConfig) {
     yaml.safeLoad(contents)
   );
 
+  eleventyConfig.addHandlebarsHelper("json", (obj) => {
+    return JSON.stringify(obj);
+  });
+
   eleventyConfig.addHandlebarsHelper("list", (len) => {
     return new Array(len).fill(0);
   });
