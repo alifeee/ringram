@@ -309,15 +309,6 @@ pagination:
     </style>
 
     <script src="/alpine.min.js" defer></script>
-    {{!-- load from unpkg if failed (e.g., if not at root) --}}
-    <script>
-        if (!window.Alpine) {
-            var script = document.createElement('script');
-            script.src = '//unpkg.com/alpinejs';
-            script.defer = true;
-            document.head.appendChild(script);
-        }
-    </script>
     <script>
         let patternmap = {{{json morse}}}
         function morse(l) {
