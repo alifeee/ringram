@@ -1,4 +1,5 @@
 const yaml = require("js-yaml");
+const htmlmin = require("html-minifier");
 
 module.exports = function (eleventyConfig) {
   // copy static files
@@ -39,5 +40,19 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addHandlebarsHelper("eq", (n1, n2) => {
     return n1 === n2;
+  });
+
+  eleventyConfig.addTransform("htmlmin", function (content) {
+    if (this.page.outputPath && this.page.outputPath.endsWith(".html")) {
+      let minified = htmlmin.minify(content, {
+        removeComments: false,
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+      });
+      return minified;
+    }
+
+    return content;
   });
 };
