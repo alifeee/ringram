@@ -26,6 +26,10 @@ npm run build
 
 ## Nice features
 
+- UI
+  - "show solution" button
+  - "check solution" button
+  - there is no "red" dot/dash if the row/column has 0 to begin with
 - hashing & generating
   - think of puzzle hash (number of dots/dashes plus starting letters)
   - think of solution hash (just the 12 letters)
