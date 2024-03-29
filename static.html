@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      @font-face {
+        font-family: "Morse";
+        src: url("https://blog.alifeee.co.uk/font-workshop/fonts/vmorse/VMORSE.woff");
+      }
+      h1 {
+        font-family: "Morse";
+        font-size: 3em;
+        text-align: center;
+      }
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      form {
+        display: grid;
+        grid-template-columns: 1fr auto auto auto auto 1fr;
+        grid-template-rows: 1fr auto auto auto auto 1fr;
+        grid-template-areas:
+          ".  ab ac ad ae . "
+          "ba bb bc bd be bf"
+          "ca cb .  .  ce cf"
+          "da db .  .  de df"
+          "ea eb ec ed ee ef"
+          ".  fb fc fd fe . ";
+      }
+      input {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.5rem;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      input:nth-of-type(1) {
+        grid-area: bb;
+      }
+      input:nth-of-type(2) {
+        grid-area: bc;
+      }
+      input:nth-of-type(3) {
+        grid-area: bd;
+      }
+      input:nth-of-type(4) {
+        grid-area: be;
+      }
+      input:nth-of-type(5) {
+        grid-area: cb;
+      }
+      input:nth-of-type(6) {
+        grid-area: ce;
+      }
+      input:nth-of-type(7) {
+        grid-area: db;
+      }
+      input:nth-of-type(8) {
+        grid-area: de;
+      }
+      input:nth-of-type(9) {
+        grid-area: eb;
+      }
+      input:nth-of-type(10) {
+        grid-area: ec;
+      }
+      input:nth-of-type(11) {
+        grid-area: ed;
+      }
+      input:nth-of-type(12) {
+        grid-area: ee;
+      }
+      .dot {
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 50%;
+        background-color: black;
+      }
+      .dots {
+        display: flex;
+        align-items: center;
+        gap: 0.1rem;
+      }
+      .top.dots {
+        flex-direction: column;
+        margin: 0.25rem 0;
+        justify-content: flex-end;
+      }
+      .left.dots {
+        flex-direction: row;
+        margin: 0 0.25rem;
+        justify-content: flex-end;
+      }
+
+      .dash {
+        width: 1.5rem;
+        height: 0.5rem;
+        border-radius: 0%;
+        background-color: black;
+      }
+      .dashes {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .bottom.dashes {
+        flex-direction: column;
+        margin: 0.25rem 0;
+        justify-content: flex-start;
+      }
+      .right.dashes {
+        flex-direction: row;
+        margin: 0 0.25rem;
+        justify-content: flex-start;
+      }
+      .right.dashes .dash {
+        height: 1.5rem;
+        width: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Morse Puzzles</h1>
+    </header>
+    <main>
+      <form id="puzzle">
+        <!-- top dots -->
+        <div class="top dots" style="grid-area: ab">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="top dots" style="grid-area: ac">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="top dots" style="grid-area: ad">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="top dots" style="grid-area: ae">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <!-- left dots -->
+        <div class="left dots" style="grid-area: ba">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="left dots" style="grid-area: ca">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="left dots" style="grid-area: da">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="left dots" style="grid-area: ea">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <!-- bottom dashes -->
+        <div class="bottom dashes" style="grid-area: fb">
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+        </div>
+        <div class="bottom dashes" style="grid-area: fc">
+          <div class="dash"></div>
+        </div>
+        <div class="bottom dashes" style="grid-area: fd">
+          <div class="dash"></div>
+          <div class="dash"></div>
+        </div>
+        <div class="bottom dashes" style="grid-area: fe">
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+        </div>
+        <!-- right dashes -->
+        <div class="right dashes" style="grid-area: bf">
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+        </div>
+        <div class="right dashes" style="grid-area: cf">
+          <div class="dash"></div>
+        </div>
+        <div class="right dashes" style="grid-area: df">
+          <div class="dash"></div>
+          <div class="dash"></div>
+        </div>
+        <div class="right dashes" style="grid-area: ef">
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+          <div class="dash"></div>
+        </div>
+        <!-- top row -->
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <!-- 2nd row -->
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <!-- 3rd row -->
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <!-- bottom row -->
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+      </form>
+    </main>
+  </body>
+</html>

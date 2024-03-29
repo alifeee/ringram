@@ -1,0 +1,31 @@
+- dots-top: [3, 2, 1, 6]
+  dots-left: [2, 2, 2, 6]
+  dashes-bottom: [6, 3, 4, 2]
+  dashes-right: [9, 0, 2, 5]
+  letters: [
+    ["M", "", "", ""],
+    ["", ""],
+    ["", ""],
+    ["", "", "", "R"]
+  ]
+- dots-top: [9, 2, 4, 3]
+  dots-left: [6, 3, 4, 5]
+  dashes-bottom: [5, 2, 1, 2]
+  dashes-right: [3, 1, 0, 6]
+  letters: [
+    ["", "", "", "T"],
+    ["", ""],
+    ["", ""],
+    ["Y", "", "", ""]
+  ]
+- dots-top: [4, 3, 3, 5]
+  dots-left: [4, 3, 3, 5]
+  dashes-bottom: [6, 3, 1, 8]
+  dashes-right: [6, 3, 4, 5]
+  letters: [
+    ["O", "", "", ""],
+    ["", ""],
+    ["", ""],
+    ["", "", "", "L"]
+  ]
+  

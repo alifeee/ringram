@@ -1,0 +1,334 @@
+---
+pagination:
+  data: puzzles
+  size: 1
+  alias: puzzle
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        @font-face {
+            font-family: "Morse";
+            src: url("https://blog.alifeee.co.uk/font-workshop/fonts/vmorse/VMORSE.woff");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-family: "Morse";
+            font-size: 3em;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto auto 1fr;
+            grid-template-rows: 1fr auto auto auto auto 1fr;
+            grid-template-areas:
+                ".  ab ac ad ae . "
+                "ba bb bc bd be bf"
+                "ca cb .  .  ce cf"
+                "da db .  .  de df"
+                "ea eb ec ed ee ef"
+                ".  fb fc fd fe . ";
+        }
+
+        input {
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        input:disabled {
+            background-color: ghostwhite;
+            color: black;
+        }
+
+        input:nth-of-type(1) {
+            grid-area: bb;
+        }
+
+        input:nth-of-type(2) {
+            grid-area: bc;
+        }
+
+        input:nth-of-type(3) {
+            grid-area: bd;
+        }
+
+        input:nth-of-type(4) {
+            grid-area: be;
+        }
+
+        input:nth-of-type(5) {
+            grid-area: cb;
+        }
+
+        input:nth-of-type(6) {
+            grid-area: ce;
+        }
+
+        input:nth-of-type(7) {
+            grid-area: db;
+        }
+
+        input:nth-of-type(8) {
+            grid-area: de;
+        }
+
+        input:nth-of-type(9) {
+            grid-area: eb;
+        }
+
+        input:nth-of-type(10) {
+            grid-area: ec;
+        }
+
+        input:nth-of-type(11) {
+            grid-area: ed;
+        }
+
+        input:nth-of-type(12) {
+            grid-area: ee;
+        }
+
+        .dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: black;
+        }
+
+        .dots {
+            display: flex;
+            align-items: center;
+            gap: 0.1rem;
+        }
+
+        .top.dots {
+            flex-direction: column;
+            margin: 0.25rem 0;
+            justify-content: flex-end;
+        }
+
+        .left.dots {
+            flex-direction: row;
+            margin: 0 0.25rem;
+            justify-content: flex-end;
+        }
+
+        .top.dots._0 {
+            grid-area: ab;
+        }
+
+        .top.dots._1 {
+            grid-area: ac;
+        }
+
+        .top.dots._2 {
+            grid-area: ad;
+        }
+
+        .top.dots._3 {
+            grid-area: ae;
+        }
+
+        .left.dots._0 {
+            grid-area: ba;
+        }
+
+        .left.dots._1 {
+            grid-area: ca;
+        }
+
+        .left.dots._2 {
+            grid-area: da;
+        }
+
+        .left.dots._3 {
+            grid-area: ea;
+        }
+
+        .dash {
+            width: 1.5rem;
+            height: 0.5rem;
+            border-radius: 0%;
+            background-color: black;
+        }
+
+        .dashes {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .bottom.dashes {
+            flex-direction: column;
+            margin: 0.25rem 0;
+            justify-content: flex-start;
+        }
+
+        .right.dashes {
+            flex-direction: row;
+            margin: 0 0.25rem;
+            justify-content: flex-start;
+        }
+
+        .right.dashes .dash {
+            height: 1.5rem;
+            width: 0.5rem;
+        }
+
+        .bottom.dashes._0 {
+            grid-area: fb;
+        }
+
+        .bottom.dashes._1 {
+            grid-area: fc;
+        }
+
+        .bottom.dashes._2 {
+            grid-area: fd;
+        }
+
+        .bottom.dashes._3 {
+            grid-area: fe;
+        }
+
+        .right.dashes._0 {
+            grid-area: bf;
+        }
+
+        .right.dashes._1 {
+            grid-area: cf;
+        }
+
+        .right.dashes._2 {
+            grid-area: df;
+        }
+
+        .right.dashes._3 {
+            grid-area: ef;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+        
+        footer a, footer span {
+            display: block;
+            padding: 0.5rem 1rem;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+        }
+        
+        footer a:hover {
+            background-color: gray;
+            color: black;
+        }
+
+        footer span {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Morse Puzzles</h1>
+    </header>
+    <main>
+        <form id="puzzle">
+            {{#with puzzle}}
+
+            {{!-- top dots --}}
+            {{#each [dots-top]}}
+            <div class="top dots _{{@index}}">
+                {{#each (list this)}}
+                <div class="dot"></div>
+                {{/each}}
+            </div>
+            {{/each}}
+
+            {{!-- left dots --}}
+            {{#each [dots-left]}}
+            <div class="left dots _{{@index}}">
+                {{#each (list this)}}
+                <div class="dot"></div>
+                {{/each}}
+            </div>
+            {{/each}}
+
+            {{!-- bottom dashes --}}
+            {{#each [dashes-bottom]}}
+            <div class="bottom dashes _{{@index}}">
+                {{#each (list this)}}
+                <div class="dash"></div>
+                {{/each}}
+            </div>
+            {{/each}}
+
+            {{!-- right dashes --}}
+            {{#each [dashes-right]}}
+            <div class="right dashes _{{@index}}">
+                {{#each (list this)}}
+                <div class="dash"></div>
+                {{/each}}
+            </div>
+            {{/each}}
+
+            <!-- inputs -->
+            {{#each letters}}
+            {{#each this}}
+            {{#if this}}
+            <input type="text" value="{{this}}" disabled />
+            {{else}}
+            <input type="text" maxlength="1" />
+            {{/if}}
+            {{/each}}
+            {{/each}}
+            {{/with}}
+        </form>
+    </main>
+    <footer>
+        {{#if pagination.previous}}
+            <a href="{{pagination.previous}}">Previous</a>
+            {{else}}
+            <span>Previous</span>
+        {{/if}}
+        {{#if pagination.next}}
+            <a href="{{pagination.next}}">Next</a>
+            {{else}}
+            <span>Next</span>
+        {{/if}}
+    </footer>
+</body>
+
+</html>

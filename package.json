@@ -1,0 +1,15 @@
+{
+  "name": "ringram",
+  "version": "0.1.0",
+  "description": "ringram!",
+  "main": "package.json",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "author": "alifeee",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
