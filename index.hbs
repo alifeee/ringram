@@ -450,9 +450,9 @@ pagination:
             {{#each [dashes-right]}}
             <div class="right dashes _{{@index}}" x-data="{ ind: {{@index}}, tot: {{this}} }">
                 {{#each (list this)}}
-                <div class="dash" x-bind:class="columns[ind].dashes > {{@index}}
+                <div class="dash" x-bind:class="rows[ind].dashes > {{@index}}
                     ? (
-                        columns[ind].dashes > ({{@index}} + tot)
+                        rows[ind].dashes > ({{@index}} + tot)
                         ? 'over'
                         : 'used'
                     )
