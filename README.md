@@ -10,6 +10,10 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
   - "show solution" button
   - "check solution" button
   - there is no "red" dot/dash if the row/column has 0 to begin with
+  - press left/right arrow keys to move box (if cursor is in reasonable place)
+  - toggle/inputs on cheat sheet for:
+    - hide/show vowels
+    - hide/show letters with "exactly N dots & M dashes"
 - hashing & generating
   - think of puzzle hash (number of dots/dashes plus starting letters)
   - think of solution hash (just the 12 letters)
