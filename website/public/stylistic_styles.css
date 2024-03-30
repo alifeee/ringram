@@ -101,6 +101,9 @@ main {
   color: black;
 }
 
+.hidden {
+  display: none;
+}
 .dot.used {
   background-color: var(--used-colour-dot);
 }

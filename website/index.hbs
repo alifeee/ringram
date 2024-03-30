@@ -113,10 +113,13 @@ pagination:
             {{#each [dots-top]}}
             <div class="top dots _{{@index}}" x-data="{ ind: {{@index}}, tot: {{this}} }">
                 {{#each (list this)}}
-                <div class="dot" x-bind:class="[columns[ind].dots > {{@index}} ? 'used' : '', columns[ind].dots > {{@index}} + tot ? 'over' : '']"></div>
+                <div class="dot" :class="[columns[ind].dots > {{@index}} ? 'used' : '', columns[ind].dots > {{@index}} + tot ? 'over' : '']"></div>
                 {{!-- <span x-text="columns[ind].dots + ' dots'"></span> --}}
                 {{!-- <span><span x-text="ind"></span>, {{@index}}</span> --}}
                 {{/each}}
+                <template x-if="tot == 0">
+                    <div class="dot" :class="[columns[ind].dots > 0 ? 'over' : 'hidden']"></div>
+                </template>
             </div>
             {{/each}}
 
@@ -124,8 +127,11 @@ pagination:
             {{#each [dots-left]}}
             <div class="left dots _{{@index}}" x-data="{ ind: {{@index}}, tot: {{this}} }">
                 {{#each (list this)}}
-                <div class="dot" x-bind:class="[rows[ind].dots > {{@index}} ? 'used' : '', rows[ind].dots > {{@index}} + tot ? 'over' : '']"></div>
+                <div class="dot" :class="[rows[ind].dots > {{@index}} ? 'used' : '', rows[ind].dots > {{@index}} + tot ? 'over' : '']"></div>
                 {{/each}}
+                <template x-if="tot == 0">
+                    <div class="dot" :class="[rows[ind].dots > 0 ? 'over' : 'hidden']"></div>
+                </template>
             </div>
             {{/each}}
 
@@ -133,8 +139,11 @@ pagination:
             {{#each [dashes-bottom]}}
             <div class="bottom dashes _{{@index}}" x-data="{ ind: {{@index}}, tot: {{this}} }">
                 {{#each (list this)}}
-                <div class="dash" x-bind:class="columns[ind].dashes > {{@index}}?(columns[ind].dashes>({{@index}} + tot)?'over':'used'):''"></div>
+                <div class="dash" :class="columns[ind].dashes > {{@index}}?(columns[ind].dashes>({{@index}} + tot)?'over':'used'):''"></div>
                 {{/each}}
+                <template x-if="tot == 0">
+                    <div class="dash" :class="[columns[ind].dashes > 0 ? 'over' : 'hidden']"></div>
+                </template>
             </div>
             {{/each}}
 
@@ -142,8 +151,11 @@ pagination:
             {{#each [dashes-right]}}
             <div class="right dashes _{{@index}}" x-data="{ ind: {{@index}}, tot: {{this}} }">
                 {{#each (list this)}}
-                <div class="dash" x-bind:class="rows[ind].dashes > {{@index}}?(rows[ind].dashes>({{@index}} + tot)?'over':'used'):''"></div>
+                <div class="dash" :class="rows[ind].dashes > {{@index}}?(rows[ind].dashes>({{@index}} + tot)?'over':'used'):''"></div>
                 {{/each}}
+                <template x-if="tot == 0">
+                    <div class="dash" :class="[rows[ind].dashes > 0 ? 'over' : 'hidden']"></div>
+                </template>
             </div>
             {{/each}}
 
