@@ -33,12 +33,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+      - name: go to website directory
+        run: cd website
       - name: Install dependencies
         run: npm ci
       - name: Build with Eleventy
         run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
+        with:
+          path: website/_site
 
   # Deployment job
   deploy:
