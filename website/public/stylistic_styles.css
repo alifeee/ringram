@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --unused-colour-dot: #bfbfbf;
+  --unused-colour-dash: #bfbfbf;
+
+  --used-colour-dot: #4285f4;
+  --used-colour-dash: #ff6d01;
+
+  --over-colour-dot: red;
+  --over-colour-dash: red;
+
+  --centre-colour: black;
+
+  --border-colour: black;
+  --inner-border-width: 1px;
+  --outer-border-width: 0.25rem;
+  --selected-border-width: 2px;
+  --outer-border-radius: 0.25rem;
+
+  /* padding between dots/dashes and grid outline */
+  --dotdash-padding: 0.75rem;
+}
+
+@font-face {
+  font-family: "Morse";
+  src: url("https://blog.alifeee.co.uk/font-workshop/fonts/vmorse/VMORSE.woff");
+}
+@font-face {
+  font-family: "Arvo";
+  src: url("/Arvo-Regular.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Arvo", serif;
+}
+h1 {
+  font-family: "Morse";
+  font-size: 3em;
+  text-align: center;
+}
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "puzzle"
+    "nextprev"
+    "morse";
+}
+
+#puzzle {
+  grid-area: puzzle;
+}
+.nextprev {
+  grid-area: nextprev;
+}
+.morse {
+  grid-area: morse;
+}
+@media screen and (min-width: 1200px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "puzzle morse"
+      "nextprev nextprev";
+  }
+}
+
+#puzzle .centre {
+  background-color: var(--centre-colour);
+}
+
+#puzzle input {
+  border-radius: 0;
+  width: 3rem;
+  height: 3rem;
+
+  border-color: var(--border-colour);
+  border-width: var(--inner-border-width);
+  border-style: solid;
+
+  font-size: 1.75rem;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Arvo", serif;
+}
+#puzzle input:focus {
+  outline: none;
+  border-width: var(--selected-border-width);
+}
+#puzzle input:disabled {
+  background-color: ghostwhite;
+  color: black;
+}
+
+.dot.used {
+  background-color: var(--used-colour-dot);
+}
+.dash.used {
+  background-color: var(--used-colour-dash);
+}
+.dot.over {
+  background-color: var(--over-colour-dot);
+}
+.dash.over {
+  background-color: var(--over-colour-dash);
+}
+
+.dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--unused-colour-dot);
+}
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+.top.dots {
+  flex-direction: column-reverse;
+  margin-bottom: var(--dotdash-padding);
+  justify-content: flex-start;
+}
+.left.dots {
+  flex-direction: row-reverse;
+  margin-right: var(--dotdash-padding);
+  justify-content: flex-start;
+}
+.dash {
+  width: 1.5rem;
+  height: 0.5rem;
+  border-radius: 0%;
+  background-color: var(--unused-colour-dash);
+}
+.dashes {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.bottom.dashes {
+  flex-direction: column;
+  margin-top: var(--dotdash-padding);
+  justify-content: flex-start;
+}
+.right.dashes {
+  flex-direction: row;
+  margin-left: var(--dotdash-padding);
+  justify-content: flex-start;
+}
+.right.dashes .dash {
+  height: 1.5rem;
+  width: 0.5rem;
+}
+
+.nextprev {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+.nextprev a,
+.nextprev span {
+  display: block;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+.nextprev a:hover {
+  background-color: gray;
+  color: black;
+}
+.nextprev span {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+section.morse {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+input#vmorse {
+  width: 1rem;
+  height: 1rem;
+}
+.cheatsheet {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+}
+.cheatsheet .translation {
+  text-align: center;
+  margin: 0.5rem;
+  font-size: 2rem;
+}
+.cheatsheet .translation .morse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cheatsheet .vmorse {
+  font-family: "Morse";
+}
+.translation .dot {
+  margin: 0.25rem;
+}
+.translation .dash {
+  margin: 0.25rem;
+}
+
+@media screen and (max-width: 600px) {
+  #puzzle input {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  .dash {
+    width: 1rem;
+    height: 0.25rem;
+  }
+  .right.dashes .dash {
+    height: 1rem;
+    width: 0.25rem;
+  }
+  .cheatsheet .translation {
+    font-size: 1.5rem;
+  }
+}

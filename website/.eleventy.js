@@ -22,7 +22,7 @@ module.exports = function (eleventyConfig) {
     return arr.flat();
   });
 
-  eleventyConfig.addHandlebarsHelper("getin", (arr, ind) => {
+  eleventyConfig.addHandlebarsHelper("getindex", (arr, ind) => {
     return arr[ind];
   });
 

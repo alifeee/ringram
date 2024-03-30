@@ -11,303 +11,10 @@ pagination:
     <title>Ringram</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-        @font-face {
-            font-family: "Morse";
-            src: url("https://blog.alifeee.co.uk/font-workshop/fonts/vmorse/VMORSE.woff");
-        }
-        @font-face {
-            font-family: "Arvo";
-            src: url("/Arvo-Regular.ttf") format("truetype");
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            font-family: "Arvo", serif;
-        }
-        h1 {
-            font-family: "Morse";
-            font-size: 3em;
-            text-align: center;
-        }
-        main {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-areas:
-                "puzzle"
-                "nextprev"
-                "morse";
-        }
-        #puzzle {
-            grid-area: puzzle;
-        }
-        .nextprev {
-            grid-area: nextprev;
-        }
-        .morse {
-            grid-area: morse;
-        }
-        @media screen and (min-width: 1200px){
-            main {
-                grid-template-columns: 1fr 1fr;
-                grid-template-areas:
-                    "puzzle morse"
-                    "nextprev nextprev";
-            }
-        }
 
-        form {
-            display: grid;
-            grid-template-columns: 1fr auto auto auto auto 1fr;
-            grid-template-rows: 1fr auto auto auto auto 1fr;
-            grid-template-areas:
-                ".  ab ac ad ae . "
-                "ba bb bc bd be bf"
-                "ca cb .  .  ce cf"
-                "da db .  .  de df"
-                "ea eb ec ed ee ef"
-                ".  fb fc fd fe . ";
-        }
-
-        #puzzle input {
-            width: 3rem;
-            height: 3rem;
-            font-size: 1.5rem;
-            text-align: center;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        input:disabled {
-            background-color: ghostwhite;
-            color: black;
-        }
-        input:nth-of-type(1) {
-            grid-area: bb;
-        }
-        input:nth-of-type(2) {
-            grid-area: bc;
-        }
-        input:nth-of-type(3) {
-            grid-area: bd;
-        }
-        input:nth-of-type(4) {
-            grid-area: be;
-        }
-        input:nth-of-type(5) {
-            grid-area: cb;
-        }
-        input:nth-of-type(6) {
-            grid-area: ce;
-        }
-        input:nth-of-type(7) {
-            grid-area: db;
-        }
-        input:nth-of-type(8) {
-            grid-area: de;
-        }
-        input:nth-of-type(9) {
-            grid-area: eb;
-        }
-        input:nth-of-type(10) {
-            grid-area: ec;
-        }
-        input:nth-of-type(11) {
-            grid-area: ed;
-        }
-        input:nth-of-type(12) {
-            grid-area: ee;
-        }
-
-        .dot {
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 50%;
-            background-color: black;
-        }
-        .dots {
-            display: flex;
-            align-items: center;
-            gap: 0.1rem;
-        }
-        .top.dots {
-            flex-direction: column;
-            margin: 0.25rem 0;
-            justify-content: flex-end;
-        }
-        .left.dots {
-            flex-direction: row;
-            margin: 0 0.25rem;
-            justify-content: flex-end;
-        }
-        .top.dots._0 {
-            grid-area: ab;
-        }
-        .top.dots._1 {
-            grid-area: ac;
-        }
-        .top.dots._2 {
-            grid-area: ad;
-        }
-        .top.dots._3 {
-            grid-area: ae;
-        }
-        .left.dots._0 {
-            grid-area: ba;
-        }
-        .left.dots._1 {
-            grid-area: ca;
-        }
-        .left.dots._2 {
-            grid-area: da;
-        }
-        .left.dots._3 {
-            grid-area: ea;
-        }
-
-        .dash {
-            width: 1.5rem;
-            height: 0.5rem;
-            border-radius: 0%;
-            background-color: black;
-        }
-        .dashes {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        .bottom.dashes {
-            flex-direction: column;
-            margin: 0.25rem 0;
-            justify-content: flex-start;
-        }
-        .right.dashes {
-            flex-direction: row;
-            margin: 0 0.25rem;
-            justify-content: flex-start;
-        }
-        .right.dashes .dash {
-            height: 1.5rem;
-            width: 0.5rem;
-        }
-        .bottom.dashes._0 {
-            grid-area: fb;
-        }
-        .bottom.dashes._1 {
-            grid-area: fc;
-        }
-        .bottom.dashes._2 {
-            grid-area: fd;
-        }
-        .bottom.dashes._3 {
-            grid-area: fe;
-        }
-        .right.dashes._0 {
-            grid-area: bf;
-        }
-        .right.dashes._1 {
-            grid-area: cf;
-        }
-        .right.dashes._2 {
-            grid-area: df;
-        }
-        .right.dashes._3 {
-            grid-area: ef;
-        }
-
-        .used {
-            background-color: gray;
-        }
-        .over {
-            background-color: red;
-        }
-
-        .nextprev {
-            display: flex;
-            justify-content: center;
-            margin: 1rem;
-        }        
-        .nextprev a, .nextprev span {
-            display: block;
-            padding: 0.5rem 1rem;
-            margin: 0.5rem;
-            background-color: black;
-            color: white;
-            text-decoration: none;
-            border-radius: 0.5rem;
-        }
-        .nextprev a:hover {
-            background-color: gray;
-            color: black;
-        }
-        .nextprev span {
-            background-color: gray;
-            cursor: not-allowed;
-        }
-
-        section.morse {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-        input#vmorse {
-            width: 1rem;
-            height: 1rem;
-        }
-        .cheatsheet {
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
-        }
-        .cheatsheet .translation {
-            text-align: center;
-            margin: 0.5rem;
-            font-size: 2rem;
-        }
-        .cheatsheet .translation .morse {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            {{!-- flex-wrap: wrap; --}}
-        }
-        .cheatsheet .vmorse {
-            font-family: "Morse";
-        }
-        .translation .dot {
-            margin: 0.25rem;
-        }
-        .translation .dash {
-            margin: 0.25rem;
-        }
-
-        @media screen and (max-width: 600px){
-            #puzzle input {
-                width: 2rem;
-                height: 2rem;
-                font-size: 1rem;
-            }
-            .dot {
-                width: 0.5rem;
-                height: 0.5rem;
-            }
-            .dash {
-                width: 1rem;
-                height: 0.25rem;
-            }
-            .right.dashes .dash {
-                height: 1rem;
-                width: 0.25rem;
-            }
-            .cheatsheet .translation {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-
+    <link rel="stylesheet" href="/stylistic_styles.css" />
+    <link rel="stylesheet" href="/practical_styles.css" />
+    
     <script src="/alpine.min.js" defer></script>
     <script>
         let patternmap = {{{json morse}}}
@@ -354,18 +61,18 @@ pagination:
     <main>
         {{#with puzzle}}
         <form id="puzzle" x-data='{
-            letter0: "{{getin (flatten letters) 0}}",
-            letter1: "{{getin (flatten letters) 1}}",
-            letter2: "{{getin (flatten letters) 2}}",
-            letter3: "{{getin (flatten letters) 3}}",
-            letter4: "{{getin (flatten letters) 4}}",
-            letter5: "{{getin (flatten letters) 5}}",
-            letter6: "{{getin (flatten letters) 6}}",
-            letter7: "{{getin (flatten letters) 7}}",
-            letter8: "{{getin (flatten letters) 8}}",
-            letter9: "{{getin (flatten letters) 9}}",
-            letter10: "{{getin (flatten letters) 10}}",
-            letter11: "{{getin (flatten letters) 11}}",
+            letter0: "{{getindex (flatten letters) 0}}",
+            letter1: "{{getindex (flatten letters) 1}}",
+            letter2: "{{getindex (flatten letters) 2}}",
+            letter3: "{{getindex (flatten letters) 3}}",
+            letter4: "{{getindex (flatten letters) 4}}",
+            letter5: "{{getindex (flatten letters) 5}}",
+            letter6: "{{getindex (flatten letters) 6}}",
+            letter7: "{{getindex (flatten letters) 7}}",
+            letter8: "{{getindex (flatten letters) 8}}",
+            letter9: "{{getindex (flatten letters) 9}}",
+            letter10: "{{getindex (flatten letters) 10}}",
+            letter11: "{{getindex (flatten letters) 11}}",
             get letters () {
                 return [
                     [this.letter0, this.letter1, this.letter2, this.letter3],
@@ -399,8 +106,10 @@ pagination:
                 ]
             },
         }'>
+            <!-- centre -->
+            <div class="centre"></div>
 
-            {{!-- top dots --}}
+            <!-- top dots -->
             {{#each [dots-top]}}
             <div class="top dots _{{@index}}" x-data="{ ind: {{@index}}, tot: {{this}} }">
                 {{#each (list this)}}
@@ -411,7 +120,7 @@ pagination:
             </div>
             {{/each}}
 
-            {{!-- left dots --}}
+            <!-- left dots -->
             {{#each [dots-left]}}
             <div class="left dots _{{@index}}" x-data="{ ind: {{@index}}, tot: {{this}} }">
                 {{#each (list this)}}
@@ -420,7 +129,7 @@ pagination:
             </div>
             {{/each}}
 
-            {{!-- bottom dashes --}}
+            <!-- bottom dashes -->
             {{#each [dashes-bottom]}}
             <div class="bottom dashes _{{@index}}" x-data="{ ind: {{@index}}, tot: {{this}} }">
                 {{#each (list this)}}
@@ -429,7 +138,7 @@ pagination:
             </div>
             {{/each}}
 
-            {{!-- right dashes --}}
+            <!-- right dashes -->
             {{#each [dashes-right]}}
             <div class="right dashes _{{@index}}" x-data="{ ind: {{@index}}, tot: {{this}} }">
                 {{#each (list this)}}
@@ -445,7 +154,7 @@ pagination:
             {{else}}
             {{!-- go to prev input on backspace --}}
             {{!-- go to next input on fill --}}
-            <input type="text" maxlength="1" x-model="letter{{@index}}" x-on:keydown.backspace.throttle="if ($event.target.value === '') {$event.target.previousElementSibling.focus(); }" x-on:input="if ($event.target.value !== '') {$event.target.nextElementSibling.focus(); }" />
+            <input type="text" maxlength="1" x-model="letter{{@index}}" x-on:keydown.backspace.throttle="if ($event.target.value === '') {$event.target.previousElementSibling.focus(); }" />
             {{/if}}
             {{/each}}
         </form>
@@ -492,9 +201,9 @@ pagination:
                         <span class="morse">
                         {{#each (strToList this)}}
                             {{#if (eq this ".")}}
-                            <div class="dot"></div>
+                            <div class="dot used"></div>
                             {{else}}
-                            <div class="dash"></div>
+                            <div class="dash used"></div>
                             {{/if}}
                         {{/each}}
                         </span>

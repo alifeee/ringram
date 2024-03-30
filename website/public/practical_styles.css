@@ -1,0 +1,123 @@
+form {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto 1fr;
+  grid-template-rows: 1fr auto auto auto auto 1fr;
+  grid-template-areas:
+    ".  ab ac ad ae . "
+    "ba bb bc bd be bf"
+    "ca cb mm mm ce cf"
+    "da db mm mm de df"
+    "ea eb ec ed ee ef"
+    ".  fb fc fd fe . ";
+}
+
+#puzzle > .centre {
+  grid-area: mm;
+}
+
+#puzzle input:nth-of-type(1) {
+  grid-area: bb;
+  border-top-width: var(--outer-border-width);
+  border-left-width: var(--outer-border-width);
+  border-top-left-radius: var(--outer-border-radius);
+}
+#puzzle input:nth-of-type(2) {
+  grid-area: bc;
+  border-top-width: var(--outer-border-width);
+}
+#puzzle input:nth-of-type(3) {
+  grid-area: bd;
+  border-top-width: var(--outer-border-width);
+}
+#puzzle input:nth-of-type(4) {
+  grid-area: be;
+  border-top-width: var(--outer-border-width);
+  border-right-width: var(--outer-border-width);
+  border-top-right-radius: var(--outer-border-radius);
+}
+#puzzle input:nth-of-type(5) {
+  grid-area: cb;
+  border-left-width: var(--outer-border-width);
+}
+#puzzle input:nth-of-type(6) {
+  grid-area: ce;
+  border-right-width: var(--outer-border-width);
+}
+#puzzle input:nth-of-type(7) {
+  grid-area: db;
+  border-left-width: var(--outer-border-width);
+}
+#puzzle input:nth-of-type(8) {
+  grid-area: de;
+  border-right-width: var(--outer-border-width);
+}
+#puzzle input:nth-of-type(9) {
+  grid-area: eb;
+  border-bottom-width: var(--outer-border-width);
+  border-left-width: var(--outer-border-width);
+  border-bottom-left-radius: var(--outer-border-radius);
+}
+#puzzle input:nth-of-type(10) {
+  grid-area: ec;
+  border-bottom-width: var(--outer-border-width);
+}
+#puzzle input:nth-of-type(11) {
+  grid-area: ed;
+  border-bottom-width: var(--outer-border-width);
+}
+#puzzle input:nth-of-type(12) {
+  grid-area: ee;
+  border-bottom-width: var(--outer-border-width);
+  border-right-width: var(--outer-border-width);
+  border-bottom-right-radius: var(--outer-border-radius);
+}
+
+.top.dots._0 {
+  grid-area: ab;
+}
+.top.dots._1 {
+  grid-area: ac;
+}
+.top.dots._2 {
+  grid-area: ad;
+}
+.top.dots._3 {
+  grid-area: ae;
+}
+.left.dots._0 {
+  grid-area: ba;
+}
+.left.dots._1 {
+  grid-area: ca;
+}
+.left.dots._2 {
+  grid-area: da;
+}
+.left.dots._3 {
+  grid-area: ea;
+}
+
+.bottom.dashes._0 {
+  grid-area: fb;
+}
+.bottom.dashes._1 {
+  grid-area: fc;
+}
+.bottom.dashes._2 {
+  grid-area: fd;
+}
+.bottom.dashes._3 {
+  grid-area: fe;
+}
+.right.dashes._0 {
+  grid-area: bf;
+}
+.right.dashes._1 {
+  grid-area: cf;
+}
+.right.dashes._2 {
+  grid-area: df;
+}
+.right.dashes._3 {
+  grid-area: ef;
+}
