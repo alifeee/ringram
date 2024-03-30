@@ -9,6 +9,7 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
 - UI
   - "show solution" button
   - "check solution" button
+  - "clear" button
   - there is no "red" dot/dash if the row/column has 0 to begin with
   - press left/right arrow keys to move box (if cursor is in reasonable place)
   - toggle/inputs on cheat sheet for:
