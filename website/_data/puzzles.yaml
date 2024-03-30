@@ -1,13 +1,12 @@
-- dots-top: [3, 2, 1, 6]
-  dots-left: [2, 2, 2, 6]
-  dashes-bottom: [6, 3, 4, 2]
-  dashes-right: [9, 0, 2, 5]
-  letters: [
-    ["M", "", "", ""],
-    ["", ""],
-    ["", ""],
-    ["", "", "", "R"]
-  ]
+- dashes-bottom: [6, 3, 1, 5]
+  dashes-right: [3, 6, 2, 4] 
+  dots-left: [9, 0, 5, 5]    
+  dots-top: [6, 2, 5, 6]     
+  letters:
+  - [B, '', '', '']
+  - ['', '']
+  - ['', '']
+  - ['', '', '', E]
 - dots-top: [9, 2, 4, 3]
   dots-left: [6, 3, 4, 5]
   dashes-bottom: [5, 2, 1, 2]
