@@ -180,7 +180,7 @@ pagination:
             {{!-- go to prev input on left --}}
             {{!-- go to prev input on backspace --}}
             {{!-- go to next input on right--}}
-            <input type="text" maxlength="1" x-model="letter{{@index}}" x-on:keydown.backspace.throttle="if ($event.target.value === '') {findTabStop(-1, $event.target).focus()}" {{#if @first}}{{else}}x-on:keydown.left.prevent="findTabStop(-1, $event.target).focus()"{{/if}} {{#if @last}}{{else}}x-on:keydown.right="findTabStop(1, $event.target).focus()"{{/if}}/>
+            <input type="text" maxlength="1" x-model="letter{{@index}}" {{#if @first}}{{else}}x-on:keydown.backspace.throttle="if ($event.target.value === '') {findTabStop(-1, $event.target).focus()}"{{/if}} {{#if @first}}{{else}}x-on:keydown.left.prevent="findTabStop(-1, $event.target).focus()"{{/if}} {{#if @last}}{{else}}x-on:keydown.right="findTabStop(1, $event.target).focus()"{{/if}}/>
             {{/if}}
             {{/each}}
         </form>
