@@ -27,6 +27,7 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
 - usability features
   - save state (entered letters) in local storage (but only for specific puzzle hash)
 - style
+  - wrap dots when more than X
   - make style a bit cooler
   - add footer with references
   - check on different device sizes
