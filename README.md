@@ -12,6 +12,7 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
   - "clear" button
   - there is no "red" dot/dash if the row/column has 0 to begin with
   - press up/down arrow keys to move box (if cursor is in reasonable place)
+      logic: if a key is pressed (up), collect a list of inputs which are reasonable and (e.g., with a function which turns flat inputs into a list of "0, 3, and 6 are above you!". Then, filter for "disabled", and if there's one left...) focus it!
   - pressing backspace/left/right skips over disabled inputs
   - toggle/inputs on cheat sheet for:
     - hide/show vowels
