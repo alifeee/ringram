@@ -3,6 +3,10 @@
 }
 
 :root {
+  --input-background-colour: white;
+  --input-set-colour: whitesmoke;
+  --input-text-colour: black;
+
   --unused-colour-dot: #bfbfbf;
   --unused-colour-dash: #bfbfbf;
 
@@ -86,6 +90,9 @@ main {
   border-width: var(--inner-border-width);
   border-style: solid;
 
+  background-color: var(--input-background-colour);
+  color: var(--input-text-colour);
+
   font-size: 1.75rem;
   text-align: center;
   font-weight: bold;
@@ -97,8 +104,7 @@ main {
   border-width: var(--selected-border-width);
 }
 #puzzle input:disabled {
-  background-color: ghostwhite;
-  color: black;
+  background-color: var(--input-set-colour);
 }
 
 .hidden {
