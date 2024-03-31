@@ -47,3 +47,13 @@ Some others will have to be switched based on the puzzle size (such as functions
 ### Other sizes
 
 Any size is reasonably possible. Larger ones will start to have LOTS of dots/dashes, so these should be very wrappable by this stage.
+
+## Notes on puzzle difficulty
+
+What makes puzzles easier or harder? I'm not sure. Here are some which could, or they might not.
+
+- Double letters (if two opposite letters are the same letter)
+- Middle-filled in letter. If a letter is filled in, in the middle, it makes its opposite side twin easier to guess
+- Rare letters?
+- If there is a row/column with no/few dots (and few dashes), or no/few dashes (and few dots)
+- If there is a combination of starting letters which, grammatically, can not result in many words which would fit there
