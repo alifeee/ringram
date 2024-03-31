@@ -52,6 +52,19 @@ pagination:
             return {dots, dashes};
         }
     </script>
+    <script>
+        function findTabStop(direction, el) {
+            // find next (direction 1) or previous (direction -1) tab stop from el
+            var universe = document.querySelectorAll('input, button, select, textarea, a[href]');
+            var list = Array.prototype.filter.call(universe, function(item) {return item.tabIndex >= "0" && !item.disabled && !item.hidden;});
+            var index = list.indexOf(el);
+            if (direction == 1) {
+                return list[index + 1] || list[0];
+            } else if (direction == -1) {
+                return list[index - 1] || list[list.length - 1];
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -164,9 +177,10 @@ pagination:
             {{#if this}}
             <input type="text" value="{{this}}" disabled x-model="letter{{@index}}" />
             {{else}}
+            {{!-- go to prev input on left --}}
             {{!-- go to prev input on backspace --}}
-            {{!-- go to next input on fill --}}
-            <input type="text" maxlength="1" x-model="letter{{@index}}" x-on:keydown.backspace.throttle="if ($event.target.value === '') {$event.target.previousElementSibling.focus(); }" />
+            {{!-- go to next input on right--}}
+            <input type="text" maxlength="1" x-model="letter{{@index}}" x-on:keydown.backspace.throttle="if ($event.target.value === '') {findTabStop(-1, $event.target).focus()}" {{#if @first}}{{else}}x-on:keydown.left.prevent="findTabStop(-1, $event.target).focus()"{{/if}} {{#if @last}}{{else}}x-on:keydown.right="findTabStop(1, $event.target).focus()"{{/if}}/>
             {{/if}}
             {{/each}}
         </form>

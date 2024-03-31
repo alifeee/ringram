@@ -11,7 +11,8 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
   - "check solution" button
   - "clear" button
   - there is no "red" dot/dash if the row/column has 0 to begin with
-  - press left/right arrow keys to move box (if cursor is in reasonable place)
+  - press up/down arrow keys to move box (if cursor is in reasonable place)
+  - pressing backspace/left/right skips over disabled inputs
   - toggle/inputs on cheat sheet for:
     - hide/show vowels
     - hide/show letters with "exactly N dots & M dashes"
