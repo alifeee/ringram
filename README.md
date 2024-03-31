@@ -18,7 +18,7 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
     - hide/show vowels
     - hide/show letters with "exactly N dots & M dashes"
 - hashing & generating
-  - think of puzzle hash (number of dots/dashes plus starting letters)
+  - think of puzzle hash (type (4x4, 3x3), number of dots/dashes plus starting letters)
   - think of solution hash (just the 12 letters)
   - make a validator to check solution hash against puzzle hash
   - make puzzle generator
@@ -35,3 +35,15 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
   - check on different device sizes
   - check on different browsers
 - add new puzzle every day with CRON CI
+
+## 3x3
+
+What is 4x4 specific? Some things. To make 3x3 (or other sizes) possible...
+
+Some things could be changed to be "last of type" or "first of type" instead of hard-indexed `0..4`.
+
+Some others will have to be switched based on the puzzle size (such as functions which transform the flat list of inputs into a puzzle). Maybe I'll have to template language the CSS file...
+
+### Other sizes
+
+Any size is reasonably possible. Larger ones will start to have LOTS of dots/dashes, so these should be very wrappable by this stage.
