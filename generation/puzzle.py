@@ -99,6 +99,30 @@ def words_to_puzzle_solved(words: List[str]) -> List[List[str]]:
         ]
     )
 
+def puzzle_solved_to_words(puzzle: List[List[str]]) -> List[str]:
+    """Convert a solved puzzle to words
+    input (visual)
+      B I R D
+      O     O
+      R     V
+      N O S E
+    input (python)
+      [
+        ["B", "I", "R", "D"],
+        ["O",           "O"],
+        ["R",           "V"],
+        ["N", "O", "S", "E"],
+      ]
+    output
+      ["BIRD", "BORN", "DOVE", "NOSE"]
+    """
+    return [
+        "".join([puzzle[0][0], puzzle[0][1], puzzle[0][2], puzzle[0][3]]),
+        "".join([puzzle[0][0], puzzle[1][0], puzzle[2][0], puzzle[3][0]]),
+        "".join([puzzle[0][3], puzzle[1][1], puzzle[2][1], puzzle[3][3]]),
+        "".join([puzzle[3][0], puzzle[3][1], puzzle[3][2], puzzle[3][3]]),
+    ]
+
 
 def puzzle_to_puzzle_unsolved(
     puzzle: List[List[str]], reveal: List[int]
