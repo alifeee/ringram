@@ -44,6 +44,9 @@ def flatten_puzzle(puzzle_full: List[List[str]]) -> List[str]:
     output
       ["B", "I", "R", "D", "O", "O", "R", "V", "N", "O", "S", "E"]
     """
+    # check dimension is 2
+    if not all(isinstance(row, list) for row in puzzle_full):
+        raise ValueError("Puzzle must be a list of lists")
     return [letter for row in puzzle_full for letter in row]
 
 
