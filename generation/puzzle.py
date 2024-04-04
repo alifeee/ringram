@@ -145,6 +145,13 @@ def puzzle_to_str(puzzle: List[str], metrics: Dict[str, List[int]] = None) -> st
       -     -
       -     -
       - - - E
+    or with metrics into this
+      6 2 5 6
+    9 B - - - 3
+    0 -     - 6
+    5 -     - 2
+    5 - - - E 4
+      6 3 1 5
     """
     puzzle = inflate_puzzle(
         [letter if letter else "-" for letter in flatten_puzzle(puzzle)]
