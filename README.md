@@ -17,6 +17,7 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
   - toggle/inputs on cheat sheet for:
     - hide/show vowels
     - hide/show letters with "exactly N dots & M dashes"
+    - sort letters by number of dots/number of dashes/alphabetically
 - hashing & generating
   - think of puzzle hash (type (4x4, 3x3), number of dots/dashes plus starting letters)
   - think of solution hash (just the 12 letters)
