@@ -65,3 +65,453 @@
   - [O, '', '']
   - ['', '']
   - ['', '', N]
+- dashes-bottom: [3, 3, 5]
+  dashes-right: [3, 3, 5]
+  dots-left: [7, 3, 5]
+  dots-top: [6, 4, 5]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', P]
+
+- dashes-bottom: [3, 1, 2]
+  dashes-right: [1, 1, 4]
+  dots-left: [8, 4, 3]
+  dots-top: [5, 3, 7]
+  letters:
+  - [B, '', '']
+  - ['', '']
+  - ['', '', P]
+
+- dashes-bottom: [1, 6, 2]
+  dashes-right: [4, 0, 5]
+  dots-left: [6, 2, 3]
+  dots-top: [5, 0, 6]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', D]
+
+- dashes-bottom: [1, 1, 7]
+  dashes-right: [3, 3, 3]
+  dots-left: [6, 1, 5]
+  dots-top: [5, 3, 4]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', P]
+
+- dashes-bottom: [2, 0, 6]
+  dashes-right: [2, 1, 5]
+  dots-left: [6, 3, 6]
+  dots-top: [5, 5, 5]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', Y]
+
+- dashes-bottom: [6, 1, 5]
+  dashes-right: [5, 5, 2]
+  dots-left: [5, 1, 4]
+  dots-top: [4, 4, 2]
+  letters:
+  - [O, '', '']
+  - ['', '']
+  - ['', '', T]
+
+- dashes-bottom: [2, 3, 4]
+  dashes-right: [3, 1, 5]
+  dots-left: [4, 3, 3]
+  dots-top: [6, 2, 2]
+  letters:
+  - [R, '', '']
+  - ['', '']
+  - ['', '', N]
+
+- dashes-bottom: [4, 2, 6]
+  dashes-right: [3, 4, 5]
+  dots-left: [5, 1, 3]
+  dots-top: [3, 2, 4]
+  letters:
+  - [W, '', '']
+  - ['', '']
+  - ['', '', Y]
+
+- dashes-bottom: [4, 3, 4]
+  dashes-right: [6, 1, 4]
+  dots-left: [2, 3, 5]
+  dots-top: [5, 3, 2]
+  letters:
+  - [O, '', '']
+  - ['', '']
+  - ['', '', G]
+
+- dashes-bottom: [1, 1, 3]
+  dashes-right: [2, 0, 3]
+  dots-left: [5, 5, 5]
+  dots-top: [7, 4, 4]
+  letters:
+  - [A, '', '']
+  - ['', '']
+  - ['', '', M]
+
+- dashes-bottom: [5, 0, 3]
+  dashes-right: [4, 1, 3]
+  dots-left: [4, 3, 3]
+  dots-top: [6, 2, 2]
+  letters:
+  - [P, '', '']
+  - ['', '']
+  - ['', '', T]
+
+- dashes-bottom: [2, 1, 3]
+  dashes-right: [3, 1, 2]
+  dots-left: [2, 5, 7]
+  dots-top: [7, 3, 4]
+  letters:
+  - [A, '', '']
+  - ['', '']
+  - ['', '', P]
+
+- dashes-bottom: [6, 2, 6]
+  dashes-right: [4, 6, 4]
+  dots-left: [5, 0, 4]
+  dots-top: [4, 4, 1]
+  letters:
+  - [B, '', '']
+  - ['', '']
+  - ['', '', N]
+
+- dashes-bottom: [2, 2, 6]
+  dashes-right: [3, 2, 5]
+  dots-left: [6, 4, 6]
+  dots-top: [8, 3, 5]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', Y]
+
+- dashes-bottom: [3, 4, 4]
+  dashes-right: [4, 1, 6]
+  dots-left: [5, 3, 1]
+  dots-top: [3, 2, 4]
+  letters:
+  - [R, '', '']
+  - ['', '']
+  - ['', '', N]
+
+- dashes-bottom: [3, 2, 4]
+  dashes-right: [4, 1, 4]
+  dots-left: [5, 3, 4]
+  dots-top: [5, 2, 5]
+  letters:
+  - [P, '', '']
+  - ['', '']
+  - ['', '', G]
+
+- dashes-bottom: [3, 1, 1]
+  dashes-right: [2, 2, 1]
+  dots-left: [7, 3, 5]
+  dots-top: [3, 7, 5]
+  letters:
+  - [A, '', '']
+  - ['', '']
+  - ['', '', E]
+
+- dashes-bottom: [4, 1, 4]
+  dashes-right: [2, 1, 6]
+  dots-left: [4, 5, 3]
+  dots-top: [5, 2, 5]
+  letters:
+  - [L, '', '']
+  - ['', '']
+  - ['', '', Y]
+
+- dashes-bottom: [3, 0, 6]
+  dashes-right: [4, 3, 2]
+  dots-left: [5, 2, 6]
+  dots-top: [6, 3, 4]
+  letters:
+  - [B, '', '']
+  - ['', '']
+  - ['', '', L]
+
+- dashes-bottom: [2, 3, 2]
+  dashes-right: [2, 0, 5]
+  dots-left: [7, 6, 5]
+  dots-top: [6, 5, 7]
+  letters:
+  - [A, '', '']
+  - ['', '']
+  - ['', '', P]
+
+- dashes-bottom: [3, 1, 6]
+  dashes-right: [4, 4, 2]
+  dots-left: [5, 1, 2]
+  dots-top: [4, 3, 1]
+  letters:
+  - [R, '', '']
+  - ['', '']
+  - ['', '', T]
+
+- dashes-bottom: [5, 1, 5]
+  dashes-right: [4, 4, 3]
+  dots-left: [2, 2, 4]
+  dots-top: [4, 3, 1]
+  letters:
+  - [J, '', '']
+  - ['', '']
+  - ['', '', N]
+
+- dashes-bottom: [4, 0, 6]
+  dashes-right: [4, 3, 3]
+  dots-left: [5, 2, 2]
+  dots-top: [5, 2, 2]
+  letters:
+  - [P, '', '']
+  - ['', '']
+  - ['', '', T]
+
+- dashes-bottom: [2, 4, 3]
+  dashes-right: [4, 0, 5]
+  dots-left: [1, 3, 1]
+  dots-top: [3, 1, 1]
+  letters:
+  - [T, '', '']
+  - ['', '']
+  - ['', '', T]
+
+- dashes-bottom: [2, 1, 2]
+  dashes-right: [0, 2, 3]
+  dots-left: [8, 3, 6]
+  dots-top: [8, 5, 4]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', R]
+
+- dashes-bottom: [3, 3, 3]
+  dashes-right: [0, 2, 7]
+  dots-left: [5, 4, 3]
+  dots-top: [8, 1, 3]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', U]
+
+- dashes-bottom: [5, 1, 1]
+  dashes-right: [4, 1, 2]
+  dots-left: [6, 2, 6]
+  dots-top: [4, 3, 7]
+  letters:
+  - [P, '', '']
+  - ['', '']
+  - ['', '', S]
+
+- dashes-bottom: [4, 1, 4]
+  dashes-right: [3, 1, 5]
+  dots-left: [4, 2, 3]
+  dots-top: [3, 4, 2]
+  letters:
+  - [R, '', '']
+  - ['', '']
+  - ['', '', G]
+
+- dashes-bottom: [5, 5, 7]
+  dashes-right: [6, 6, 5]
+  dots-left: [5, 0, 6]
+  dots-top: [5, 2, 4]
+  letters:
+  - [C, '', '']
+  - ['', '']
+  - ['', '', Y]
+
+- dashes-bottom: [5, 2, 3]
+  dashes-right: [2, 4, 4]
+  dots-left: [5, 1, 5]
+  dots-top: [6, 2, 3]
+  letters:
+  - [H, '', '']
+  - ['', '']
+  - ['', '', R]
+
+- dashes-bottom: [3, 2, 3]
+  dashes-right: [4, 2, 2]
+  dots-left: [3, 2, 4]
+  dots-top: [3, 5, 1]
+  letters:
+  - [A, '', '']
+  - ['', '']
+  - ['', '', T]
+
+- dashes-bottom: [5, 1, 2]
+  dashes-right: [4, 3, 1]
+  dots-left: [4, 1, 5]
+  dots-top: [4, 3, 3]
+  letters:
+  - [R, '', '']
+  - ['', '']
+  - ['', '', E]
+
+- dashes-bottom: [1, 1, 3]
+  dashes-right: [2, 1, 2]
+  dots-left: [6, 3, 2]
+  dots-top: [5, 1, 5]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', E]
+
+- dashes-bottom: [1, 1, 2]
+  dashes-right: [1, 1, 2]
+  dots-left: [6, 4, 2]
+  dots-top: [5, 3, 4]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', T]
+
+- dashes-bottom: [1, 4, 1]
+  dashes-right: [2, 0, 4]
+  dots-left: [5, 3, 3]
+  dots-top: [7, 1, 3]
+  letters:
+  - [H, '', '']
+  - ['', '']
+  - ['', '', E]
+
+- dashes-bottom: [5, 2, 3]
+  dashes-right: [3, 3, 4]
+  dots-left: [3, 2, 5]
+  dots-top: [2, 3, 5]
+  letters:
+  - [T, '', '']
+  - ['', '']
+  - ['', '', G]
+
+- dashes-bottom: [2, 1, 6]
+  dashes-right: [3, 3, 3]
+  dots-left: [4, 1, 5]
+  dots-top: [6, 3, 1]
+  letters:
+  - [R, '', '']
+  - ['', '']
+  - ['', '', N]
+
+- dashes-bottom: [4, 2, 3]
+  dashes-right: [4, 2, 3]
+  dots-left: [1, 2, 5]
+  dots-top: [2, 2, 4]
+  letters:
+  - [M, '', '']
+  - ['', '']
+  - ['', '', B]
+
+- dashes-bottom: [5, 1, 6]
+  dashes-right: [3, 4, 5]
+  dots-left: [5, 1, 3]
+  dots-top: [1, 4, 4]
+  letters:
+  - [N, '', '']
+  - ['', '']
+  - ['', '', Y]
+
+- dashes-bottom: [2, 1, 5]
+  dashes-right: [2, 4, 2]
+  dots-left: [5, 2, 6]
+  dots-top: [8, 2, 3]
+  letters:
+  - [B, '', '']
+  - ['', '']
+  - ['', '', D]
+
+- dashes-bottom: [1, 2, 6]
+  dashes-right: [1, 2, 6]
+  dots-left: [5, 3, 1]
+  dots-top: [5, 2, 2]
+  letters:
+  - [S, '', '']
+  - ['', '']
+  - ['', '', O]
+
+- dashes-bottom: [4, 5, 4]
+  dashes-right: [4, 2, 7]
+  dots-left: [3, 3, 2]
+  dots-top: [3, 2, 3]
+  letters:
+  - [A, '', '']
+  - ['', '']
+  - ['', '', P]
+
+- dashes-bottom: [3, 2, 7]
+  dashes-right: [5, 4, 3]
+  dots-left: [3, 1, 6]
+  dots-top: [3, 3, 4]
+  letters:
+  - [A, '', '']
+  - ['', '']
+  - ['', '', P]
+
+- dashes-bottom: [4, 4, 5]
+  dashes-right: [3, 4, 6]
+  dots-left: [5, 1, 0]
+  dots-top: [3, 1, 2]
+  letters:
+  - [D, '', '']
+  - ['', '']
+  - ['', '', T]
+
+- dashes-bottom: [3, 0, 3]
+  dashes-right: [3, 1, 2]
+  dots-left: [6, 3, 3]
+  dots-top: [3, 5, 4]
+  letters:
+  - [A, '', '']
+  - ['', '']
+  - ['', '', N]
+
+- dashes-bottom: [3, 2, 3]
+  dashes-right: [3, 2, 3]
+  dots-left: [1, 2, 5]
+  dots-top: [3, 3, 2]
+  letters:
+  - [T, '', '']
+  - ['', '']
+  - ['', '', N]
+
+- dashes-bottom: [2, 0, 2]
+  dashes-right: [2, 1, 1]
+  dots-left: [2, 4, 5]
+  dots-top: [3, 3, 5]
+  letters:
+  - [T, '', '']
+  - ['', '']
+  - ['', '', E]
+
+- dashes-bottom: [4, 3, 2]
+  dashes-right: [2, 1, 6]
+  dots-left: [6, 3, 3]
+  dots-top: [5, 1, 6]
+  letters:
+  - [R, '', '']
+  - ['', '']
+  - ['', '', D]
+
+- dashes-bottom: [6, 4, 3]
+  dashes-right: [5, 3, 5]
+  dots-left: [2, 3, 5]
+  dots-top: [1, 2, 7]
+  letters:
+  - [T, '', '']
+  - ['', '']
+  - ['', '', B]
+
+- dashes-bottom: [3, 1, 4]
+  dashes-right: [3, 2, 3]
+  dots-left: [6, 3, 4]
+  dots-top: [7, 3, 3]
+  letters:
+  - [B, '', '']
+  - ['', '']
+  - ['', '', M]
+
