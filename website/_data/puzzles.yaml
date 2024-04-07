@@ -1,3 +1,11 @@
+- dashes-bottom: [3, 1, 6]
+  dashes-right: [1, 4, 5] 
+  dots-left: [6, 2, 3]    
+  dots-top: [6, 3, 2]     
+  letters:
+  - [H, '', '']
+  - ['', '']
+  - ['', '', P]
 - dashes-bottom: [6, 3, 1, 5]
   dashes-right: [3, 6, 2, 4] 
   dots-left: [9, 0, 5, 5]    

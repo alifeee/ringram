@@ -73,7 +73,14 @@ pagination:
     </header>
     <main>
         {{#with puzzle}}
-        <form id="puzzle" x-data='{
+        <form id="puzzle"
+            {{#if ( eq 4 ( length letters ) )}}
+                class="four"
+            {{/if}}
+            {{#if ( eq 3 ( length letters ) )}}
+                class="three"
+            {{/if}}
+        x-data='{
             letter0: "{{getindex (flatten letters) 0}}",
             letter1: "{{getindex (flatten letters) 1}}",
             letter2: "{{getindex (flatten letters) 2}}",
@@ -86,6 +93,7 @@ pagination:
             letter9: "{{getindex (flatten letters) 9}}",
             letter10: "{{getindex (flatten letters) 10}}",
             letter11: "{{getindex (flatten letters) 11}}",
+            {{#if ( eq 4 ( length letters ) )}}
             get letters () {
                 return [
                     [this.letter0, this.letter1, this.letter2, this.letter3],
@@ -102,21 +110,28 @@ pagination:
                     [this.letter3, this.letter5, this.letter7, this.letter11],
                 ]
             },
-            get rows() {
+            {{/if}}
+            {{#if ( eq 3 ( length letters ) )}}
+            get letters () {
                 return [
-                    listToDotsDashes(this.letters[0]),
-                    listToDotsDashes(this.letters[1]),
-                    listToDotsDashes(this.letters[2]),
-                    listToDotsDashes(this.letters[3])
+                    [this.letter0, this.letter1, this.letter2],
+                    [this.letter3,               this.letter4],
+                    [this.letter5, this.letter6, this.letter7],
                 ]
             },
-            get columns() {
+            get lettersTransposed() {
                 return [
-                    listToDotsDashes(this.lettersTransposed[0]),
-                    listToDotsDashes(this.lettersTransposed[1]),
-                    listToDotsDashes(this.lettersTransposed[2]),
-                    listToDotsDashes(this.lettersTransposed[3])
+                    [this.letter0, this.letter3, this.letter5],
+                    [this.letter1,               this.letter6],
+                    [this.letter2, this.letter4, this.letter7],
                 ]
+            },
+            {{/if}}
+            get rows() {
+                return this.letters.map(listToDotsDashes)
+            },
+            get columns() {
+                return this.lettersTransposed.map(listToDotsDashes)
             },
         }'>
             <!-- centre -->
