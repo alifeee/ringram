@@ -33,7 +33,8 @@ morse = {
 
 
 def flatten_puzzle(puzzle_full: List[List[str]]) -> List[str]:
-    """Flatten a puzzle to a list of strings
+    """Flatten a puzzle to a list of strings,
+    from top left to bottom right, rightwards, then downwards
     input
       [
         ["B", "I", "R", "D"],
@@ -62,7 +63,13 @@ def inflate_puzzle(puzzle_flat: List[str]) -> List[List[str]]:
         ["N", "O", "S", "E"],
       ]
     """
-    return [puzzle_flat[0:4], puzzle_flat[4:6], puzzle_flat[6:8], puzzle_flat[8:12]]
+    # 4x4
+    if len(puzzle_flat) == 12:
+        return [puzzle_flat[0:4], puzzle_flat[4:6], puzzle_flat[6:8], puzzle_flat[8:12]]
+    # 3x3
+    if len(puzzle_flat) == 8:
+        return [puzzle_flat[0:3], puzzle_flat[3:5], puzzle_flat[5:8]]
+    raise ValueError("Only 4x4 and 3x3 puzzles implemented")
 
 
 def words_to_puzzle_solved(words: List[str]) -> List[List[str]]:
@@ -82,22 +89,37 @@ def words_to_puzzle_solved(words: List[str]) -> List[List[str]]:
         ["N", "O", "S", "E"],
       ]
     """
-    return inflate_puzzle(
-        [
-            words[0][0],
-            words[0][1],
-            words[0][2],
-            words[0][3],
-            words[1][1],
-            words[2][1],
-            words[1][2],
-            words[2][2],
-            words[3][0],
-            words[3][1],
-            words[3][2],
-            words[3][3],
-        ]
-    )
+    if len(words[0]) == 4:
+        return inflate_puzzle(
+            [
+                words[0][0],
+                words[0][1],
+                words[0][2],
+                words[0][3],
+                words[1][1],
+                words[2][1],
+                words[1][2],
+                words[2][2],
+                words[3][0],
+                words[3][1],
+                words[3][2],
+                words[3][3],
+            ]
+        )
+    if len(words[0]) == 3:
+        return inflate_puzzle(
+            [
+                words[0][0],
+                words[0][1],
+                words[0][2],
+                words[1][1],
+                words[2][1],
+                words[3][0],
+                words[3][1],
+                words[3][2],
+            ]
+        )
+    raise ValueError("Only 4x4 and 3x3 puzzles implemented")
 
 
 def puzzle_solved_to_words(puzzle: List[List[str]]) -> List[str]:
@@ -117,12 +139,21 @@ def puzzle_solved_to_words(puzzle: List[List[str]]) -> List[str]:
     output
       ["BIRD", "BORN", "DOVE", "NOSE"]
     """
-    return [
-        "".join([puzzle[0][0], puzzle[0][1], puzzle[0][2], puzzle[0][3]]),
-        "".join([puzzle[0][0], puzzle[1][0], puzzle[2][0], puzzle[3][0]]),
-        "".join([puzzle[0][3], puzzle[1][1], puzzle[2][1], puzzle[3][3]]),
-        "".join([puzzle[3][0], puzzle[3][1], puzzle[3][2], puzzle[3][3]]),
-    ]
+    if len(puzzle) == 4:
+        return [
+            "".join([puzzle[0][0], puzzle[0][1], puzzle[0][2], puzzle[0][3]]),
+            "".join([puzzle[0][0], puzzle[1][0], puzzle[2][0], puzzle[3][0]]),
+            "".join([puzzle[0][3], puzzle[1][1], puzzle[2][1], puzzle[3][3]]),
+            "".join([puzzle[3][0], puzzle[3][1], puzzle[3][2], puzzle[3][3]]),
+        ]
+    if len(puzzle) == 3:
+        return [
+            "".join([puzzle[0][0], puzzle[0][1], puzzle[0][2]]),
+            "".join([puzzle[0][0], puzzle[1][0], puzzle[2][0]]),
+            "".join([puzzle[0][2], puzzle[1][1], puzzle[2][2]]),
+            "".join([puzzle[2][0], puzzle[2][1], puzzle[2][2]]),
+        ]
+    raise ValueError("Only 4x4 and 3x3 puzzles implemented")
 
 
 def puzzle_to_puzzle_unsolved(
@@ -231,15 +262,16 @@ def get_col(puzzle: List[List[str]], col: int) -> List[str]:
     get_col(puzzle, 2) -> ["R", "S"]
     """
     # have to be careful here since middle rows are shorter
+    # not sure intimately how this logic works, but the tests pass
+    maxindex = len(puzzle) - 1
+    extrema = [0, maxindex]
     if col == 0:
-        return [puzzle[0][0], puzzle[1][0], puzzle[2][0], puzzle[3][0]]
-    if col == 1:
-        return [puzzle[0][1], puzzle[3][1]]
-    if col == 2:
-        return [puzzle[0][2], puzzle[3][2]]
-    if col == 3:
-        return [puzzle[0][3], puzzle[1][1], puzzle[2][1], puzzle[3][3]]
-    raise IndexError("Column must be between 0 and 3")
+        return [puzzle[i][0] for i in range(maxindex + 1)]
+    if 0 < col < maxindex:
+        return [puzzle[i][col] for i in extrema]
+    if col == maxindex:
+        return [puzzle[i][maxindex if i in extrema else 1] for i in range(maxindex + 1)]
+    raise IndexError(f"Column must be between 0 and {maxindex}")
 
 
 def list_to_morse(letters: List[str]) -> List[str]:
@@ -284,13 +316,18 @@ def get_puzzle_dashdot_metrics(puzzle: List[List[str]]) -> Dict[str, List[int]]:
         'dashes-bottom': [6, 3, 1, 5],
     }
     """
-    dots_top = [n_dots("".join(list_to_morse(get_col(puzzle, i)))) for i in range(4)]
-    dots_left = [n_dots("".join(list_to_morse(get_row(puzzle, i)))) for i in range(4)]
+    puzzle_size = len(puzzle)  # hopefully 3 or 4
+    dots_top = [
+        n_dots("".join(list_to_morse(get_col(puzzle, i)))) for i in range(puzzle_size)
+    ]
+    dots_left = [
+        n_dots("".join(list_to_morse(get_row(puzzle, i)))) for i in range(puzzle_size)
+    ]
     dashes_right = [
-        n_dashes("".join(list_to_morse(get_row(puzzle, i)))) for i in range(4)
+        n_dashes("".join(list_to_morse(get_row(puzzle, i)))) for i in range(puzzle_size)
     ]
     dashes_bottom = [
-        n_dashes("".join(list_to_morse(get_col(puzzle, i)))) for i in range(4)
+        n_dashes("".join(list_to_morse(get_col(puzzle, i)))) for i in range(puzzle_size)
     ]
     return {
         "dots-top": dots_top,

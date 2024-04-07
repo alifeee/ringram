@@ -45,3 +45,19 @@ class TestYamlGeneration(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             puzzleyaml(words, reveal)
+
+    def test_main_3x3(self):
+        """Test the YAML generation as it would be used via the CLI"""
+        words = ["HIT", "HUM", "TOP", "MAP"]
+        reveal = [1, 8]
+        expected_data = {
+            "dots-top": [6, 3, 2],
+            "dots-left": [6, 2, 3],
+            "dashes-right": [1, 4, 5],
+            "dashes-bottom": [3, 1, 6],
+            "letters": [["H", "", ""], ["", ""], ["", "", "P"]],
+        }
+
+        actual_data = puzzleyaml(words, reveal)
+
+        self.assertEqual(actual_data, expected_data)

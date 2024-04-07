@@ -45,9 +45,9 @@ def validate_words(words: List[str]) -> Tuple[bool, str]:
     # if any word has non-alphabetic characters
     if any(not word.isalpha() for word in words):
         return False, "All words must be alphabetic"
-    # if any word is not 4 letters
-    if any(len(word) != 4 for word in words):
-        return False, "All words must be exactly 4 letters long"
+    # if any word is a different length to the others
+    if len(set(len(word) for word in words)) > 1:
+        return False, "All words must be the same length"
     # if any word is not all caps
     if any(word != word.upper() for word in words):
         return False, "All words must be all caps"
