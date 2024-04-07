@@ -3,4 +3,4 @@
 **/__pycache__/
 
 # output
-puzzles.txt
+puzzles*.txt

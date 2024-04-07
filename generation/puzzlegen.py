@@ -8,19 +8,24 @@ import random
 from typing import List, Tuple
 from tqdm import tqdm
 
-from puzzle import flatten_puzzle, get_puzzle_dashdot_metrics, puzzle_to_str, words_to_puzzle_solved
+from puzzle import (
+    flatten_puzzle,
+    get_puzzle_dashdot_metrics,
+    puzzle_to_str,
+    words_to_puzzle_solved,
+)
 from puzzleyaml import main as yaml_main
 
-WORDLIST = "words_4-letters.txt"
-
-with open(os.path.join(os.path.dirname(__file__), WORDLIST), encoding="utf-8") as f:
-    WORDS = f.read().splitlines()
-    WORDS = [word.upper() for word in WORDS]
-
-SAVE_TO = "puzzles.txt"
+WORDLISTS = {"4x4": "words_4-letters.txt", "3x3": "words_3-letters.txt"}
+SAVE_TOS = {"4x4": "puzzles_4x4.txt", "3x3": "puzzles_3x3.txt"}
 
 
-def validate_words(words: List[str]) -> Tuple[bool, str]:
+def size_to_num(size: str) -> str:
+    """Turn "4x4" into "4" and "3x3" into "3" """
+    return size[0]
+
+
+def validate_words(all_words: List[str], words: List[str]) -> Tuple[bool, str]:
     """Validate words used in puzzle
 
     Args:
@@ -39,12 +44,33 @@ def validate_words(words: List[str]) -> Tuple[bool, str]:
     if any(word != word.upper() for word in words):
         return False, "All words must be all caps"
     # if not in word list
-    if any(word not in WORDS for word in words):
+    if any(word not in all_words for word in words):
         return False, "All words must be in the word list"
     return True, ""
 
 
-def generate(repeats: bool = False) -> List[str]:
+def start_start(word1: str, word2: str):
+    """Returns true if both inputs start with the same letter.
+    False otherwise"""
+
+    return word1[0] == word2[0]
+
+
+def end_end(word1: str, word2: str):
+    """Returns true if both inputs end with the same letter.
+    False otherwise"""
+
+    return word1[-1] == word2[-1]
+
+
+def start_end(word1: str, word2: str):
+    """Returns true if the first letter of word1 is the last letter of word2.
+    False otherwise"""
+
+    return word1[0] == word2[-1]
+
+
+def generate(all_words: List[str], repeats: bool = False) -> List[str]:
     """Puzzle generator
 
     Args:
@@ -54,23 +80,25 @@ def generate(repeats: bool = False) -> List[str]:
         List[str]: List of puzzles
     """
     puzzles = []
-    for word1 in tqdm(WORDS):
-        for word2 in WORDS:
+    for word1 in tqdm(all_words):
+        for word2 in all_words:
             if not repeats and word2 == word1:
                 continue
-            if word2[0] != word1[0]:
+            if not start_start(word1, word2):
                 continue
 
-            for word3 in WORDS:
+            for word3 in all_words:
                 if not repeats and (word3 == word1 or word3 == word2):
                     continue
-                if word3[0] != word1[3]:
+                if not start_end(word3, word1):
                     continue
 
-                for word4 in WORDS:
-                    if not repeats and (word4 == word1 or word4 == word2 or word4 == word3):
+                for word4 in all_words:
+                    if not repeats and (
+                        word4 == word1 or word4 == word2 or word4 == word3
+                    ):
                         continue
-                    if word4[0] != word2[3] or word4[3] != word3[3]:
+                    if not start_end(word4, word2) or not end_end(word4, word3):
                         continue
 
                     puzzles.append([word1, word2, word3, word4])
@@ -78,22 +106,27 @@ def generate(repeats: bool = False) -> List[str]:
 
 
 def main(
-    w1: str = None,
-    w2: str = None,
-    w3: str = None,
-    w4: str = None,
+    size: str = "4",
+    words: List[str] = None,
     verbose: bool = False,
 ):
     """main"""
-    words = [w1, w2, w3, w4]
+    if words is None:
+        words = [None, None, None, None]
     if verbose:
         print(f"Words: {words}")
 
-    valid, error = validate_words([w for w in words if w])
+    fname = WORDLISTS[f"{size}x{size}"]
+    with open(os.path.join(os.path.dirname(__file__), fname), encoding="utf-8") as f:
+        all_words = f.read().splitlines()
+        all_words = [word.upper() for word in all_words]
+
+    valid, error = validate_words(all_words, [w for w in words if w])
     if not valid:
         raise ValueError(error)
-    
-    puzzles = generate()
+
+    puzzles = generate(all_words)
+
     if verbose:
         print(f"Generated {len(puzzles)} puzzles")
         # print three random puzzles, one with morse
@@ -113,14 +146,19 @@ def main(
                 print(yaml)
 
     # save as "flatten_puzzle" to SAVE_TO
-    with open(SAVE_TO, "w", encoding="utf-8") as f:
+    save_fname = SAVE_TOS[f"{size}x{size}"]
+    with open(save_fname, "w", encoding="utf-8") as f:
         for puzzle in puzzles:
             f.write(f"{','.join(puzzle)}\n")
 
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-n",
+        help="Dimension of puzzle, either 3 or 4",
+        default="4",
+    )
     parser.add_argument(
         "-w1",
         "--word1",
@@ -148,4 +186,4 @@ if __name__ == "__main__":
         help="Print verbose output",
     )
     args = parser.parse_args()
-    main(args.word1, args.word2, args.word3, args.word4, args.verbose)
+    main(args.n, [args.word1, args.word2, args.word3, args.word4], args.verbose)

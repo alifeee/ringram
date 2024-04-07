@@ -10,7 +10,21 @@ pip install -r requirements.txt
 
 ## Generate a puzzle
 
-To-Do
+### 4x4
+
+[4-letter wordlist](./words_4-letters.txt) from <https://copylists.com/words/list-of-4-letter-words/>.
+
+```bash
+python ./puzzlegen.py -n 4
+```
+
+### 3x3
+
+[3-letter wordlist](./words_3-letters.txt) from <https://copylists.com/words/list-of-3-letter-words/>.
+
+```bash
+python ./puzzlegen.py -n 3
+```
 
 ## Generate the YAML representation of a puzzle
 
@@ -30,3 +44,9 @@ B - - -
 ```
 
 For more information see the docstring in [`puzzleyaml.py`](./puzzleyaml.py).
+
+## Run tests
+
+```bash
+pytest
+```
