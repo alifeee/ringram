@@ -22,6 +22,7 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
   - think of puzzle hash (type (4x4, 3x3), number of dots/dashes plus starting letters)
   - think of solution hash (just the 12 letters)
   - make a validator to check solution hash against puzzle hash
+  - make a base 64 encoder so you can share custom puzzles
 - difficulty
   - make "easy" puzzle (with N letters revealed)
   - make "medium" puzzle (with M letters revealed)
@@ -36,14 +37,6 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
   - check on different browsers
 - add new puzzle every day with CRON CI
 
-## 3x3
-
-What is 4x4 specific? Some things. To make 3x3 (or other sizes) possible...
-
-Some things could be changed to be "last of type" or "first of type" instead of hard-indexed `0..4`.
-
-Some others will have to be switched based on the puzzle size (such as functions which transform the flat list of inputs into a puzzle). Maybe I'll have to template language the CSS file...
-
 ### Other sizes
 
 Any size is reasonably possible. Larger ones will start to have LOTS of dots/dashes, so these should be very wrappable by this stage.
@@ -57,3 +50,52 @@ What makes puzzles easier or harder? I'm not sure. Here are some which could, or
 - Rare letters?
 - If there is a row/column with no/few dots (and few dashes), or no/few dashes (and few dots)
 - If there is a combination of starting letters which, grammatically, can not result in many words which would fit there
+
+## Notes on swappability
+
+Some words are idempotent under "count the dots/dashes of each letter".
+
+For example, `FAD == FAR` as `D = -..` and `R=.-.`, so ignoring the per-letter order of dots/dashes results in the same count.
+
+These letters can be swapped:
+
+```text
+ONE DOT
+E
+
+ONE DASH
+T
+
+TWO DOTS
+I
+
+TWO DASHES
+M
+
+THREE DOTS
+S
+
+THREE DASHES
+O
+
+ONE DOT ONE DASH
+A N
+
+TWO DOTS ONE DASH
+D R U
+
+ONE DOT TWO DASHES
+G K W
+
+TWO DOTS TWO DASHES
+C P X Z
+
+THREE DOTS ONE DASH
+B L V F
+
+ONE DOT THREE DASHES
+J Q Y
+
+FOUR DOTS
+H
+```
