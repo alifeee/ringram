@@ -210,28 +210,32 @@ def puzzle_to_str(puzzle: List[str], metrics: Dict[str, List[int]] = None) -> st
     5 - - - E 4
       6 3 1 5
     """
+    maxindex = len(puzzle) - 1
+    extrema = [0, maxindex]
     puzzle = inflate_puzzle(
         [letter if letter else "-" for letter in flatten_puzzle(puzzle)]
     )
     _str = ""
     pad_c = "  "  # corner padding
-    pad_m = "   "  # middle padding
+    pad_m = "  "  # middle padding
     if metrics is None:
-        _str += f'{" ".join(puzzle[0])}\n'
-        _str += f"{puzzle[1][0]} {pad_m} {puzzle[1][1]}\n"
-        _str += f"{puzzle[2][0]} {pad_m} {puzzle[2][1]}\n"
-        _str += f'{" ".join(puzzle[3])}'
+        for row_i in range(maxindex + 1):
+            if row_i in extrema:
+                _str += f'{" ".join(puzzle[row_i])}\n'
+            else:
+                _str += f"{puzzle[row_i][0]} {pad_m*(maxindex-1)}{puzzle[row_i][1]}\n"
     else:
         topdots = [str(n) for n in metrics["dots-top"]]
         ld = metrics["dots-left"]
         rd = metrics["dashes-right"]
         bottomdashes = [str(n) for n in metrics["dashes-bottom"]]
         _str += f'{pad_c}{" ".join(topdots)}{pad_c}\n'
-        _str += f'{ld[0]} {" ".join(puzzle[0])} {rd[0]}\n'
-        _str += f"{ld[1]} {puzzle[1][0]} {pad_m} {puzzle[1][1]} {rd[1]}\n"
-        _str += f"{ld[2]} {puzzle[2][0]} {pad_m} {puzzle[2][1]} {rd[2]}\n"
-        _str += f'{ld[3]} {" ".join(puzzle[3])} {rd[3]}'
-        _str += f'\n{pad_c}{" ".join(bottomdashes)}{pad_c}'
+        for row_i in range(maxindex + 1):
+            if row_i in extrema:
+                _str += f'{ld[row_i]} {" ".join(puzzle[row_i])} {rd[row_i]}\n'
+            else:
+                _str += f"{ld[row_i]} {puzzle[row_i][0]} {pad_m*(maxindex-1)}{puzzle[row_i][1]} {rd[1]}\n"
+        _str += f'{pad_c}{" ".join(bottomdashes)}{pad_c}'
     return _str
 
 
