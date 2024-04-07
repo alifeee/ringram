@@ -95,9 +95,9 @@ def main(words: List[str], reveal: List[int], verbose: bool = False):
     words_valid, words_error = validate_words(words)
     reveal_valid, reveal_error = validate_reveal(reveal)
     if not words_valid:
-        raise ValueError(words_error)
+        raise ValueError(f"{words_error}. words: {words}")
     if not reveal_valid:
-        raise ValueError(reveal_error)
+        raise ValueError(f"{reveal_error}. reveal: {reveal}")
 
     # create solved puzzle
     solved = words_to_puzzle_solved(words)
