@@ -22,6 +22,7 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
   - think of puzzle hash (type (4x4, 3x3), number of dots/dashes plus starting letters)
   - think of solution hash (just the 12 letters)
   - make a validator to check solution hash against puzzle hash
+  - make a base 64 encoder so you can share custom puzzles
 - difficulty
   - make "easy" puzzle (with N letters revealed)
   - make "medium" puzzle (with M letters revealed)
