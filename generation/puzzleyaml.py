@@ -134,7 +134,9 @@ def main(words: List[str], reveal: List[int], verbose: bool = False):
         "dashes-bottom": metrics["dashes-bottom"],
         "letters": unsolved,
     }
-    print(yaml.dump([yaml_data], default_flow_style=None))
+    if verbose:
+        print(yaml_data)
+    return yaml_data
 
 
 if __name__ == "__main__":
@@ -158,4 +160,6 @@ if __name__ == "__main__":
         "-v", "--verbose", action="store_true", help="Print verbose output"
     )
     args = parser.parse_args()
-    main(args.words, args.reveal, args.verbose)
+
+    data = main(args.words, args.reveal, args.verbose)
+    print(yaml.dump([data], default_flow_style=None))

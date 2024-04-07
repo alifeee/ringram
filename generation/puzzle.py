@@ -99,6 +99,7 @@ def words_to_puzzle_solved(words: List[str]) -> List[List[str]]:
         ]
     )
 
+
 def puzzle_solved_to_words(puzzle: List[List[str]]) -> List[str]:
     """Convert a solved puzzle to words
     input (visual)
@@ -128,6 +129,7 @@ def puzzle_to_puzzle_unsolved(
     puzzle: List[List[str]], reveal: List[int]
 ) -> List[List[str]]:
     """Conceal all elements of a puzzle apart from those in reveal
+    if reveal contains "-1", show all elements
     input puzzle, and reveal [1, 12]
       B I R D
       O     O
@@ -212,6 +214,9 @@ def get_row(puzzle: List[List[str]], row: int) -> List[str]:
     get_row(puzzle, 0) -> ["B", "I", "R", "D]
     get_row(puzzle, 2) -> ["R", "V"]
     """
+    # do not do negative indexing for now
+    if row < 0:
+        raise IndexError("Cannot negatively index puzzles (yet...)")
     return puzzle[row]
 
 
@@ -241,6 +246,8 @@ def list_to_morse(letters: List[str]) -> List[str]:
     """Convert a list of letters to morse
     e.g., ["B", "I", "R", "D"] -> ["-...", "..", ".-.", "-.."]
     """
+    if isinstance(letters, str):
+        raise ValueError("letters should be a list")
     return [morse[letter] for letter in letters]
 
 
@@ -248,6 +255,8 @@ def n_dots(sequence: str) -> int:
     """Get the number of dots in a morse sequence
     e.g., "-..." -> 3
     """
+    if isinstance(sequence, list):
+        raise ValueError("sequence must be a string")
     return sequence.count(".")
 
 
@@ -255,6 +264,8 @@ def n_dashes(sequence: str) -> int:
     """Get the number of dashes in a morse sequence
     e.g., "-..." -> 1
     """
+    if isinstance(sequence, list):
+        raise ValueError("sequence must be a string")
     return sequence.count("-")
 
 
