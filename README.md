@@ -9,6 +9,7 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
 - UI
   - "show solution" button
   - "check solution" button
+  - grey-out letters that don't fit in highlighted cell
   - "clear" button
   - there is no "red" dot/dash if the row/column has 0 to begin with
   - press up/down arrow keys to move box (if cursor is in reasonable place)
