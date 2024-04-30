@@ -42,6 +42,14 @@ module.exports = function (eleventyConfig) {
     return n1 === n2;
   });
 
+  // count dots/dashes in string, e.g., ".-.." -> 3 dots, 1 dash
+  eleventyConfig.addHandlebarsHelper("ndots", (s) => {
+    return s.split("").filter((x) => x == ".").length;
+  });
+  eleventyConfig.addHandlebarsHelper("ndashes", (s) => {
+    return s.split("").filter((x) => x == "-").length;
+  });
+
   eleventyConfig.addTransform("htmlmin", function (content) {
     if (this.page.outputPath && this.page.outputPath.endsWith(".html")) {
       let minified = htmlmin.minify(content, {

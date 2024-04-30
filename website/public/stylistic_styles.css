@@ -258,7 +258,7 @@ section.morse {
   align-items: center;
   gap: 1rem;
 }
-input#vmorse {
+section.morse form input[type="checkbox"] {
   width: 1rem;
   height: 1rem;
 }
@@ -276,6 +276,9 @@ input#vmorse {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.cheatsheet .translation.unavailable {
+  opacity: 0.25;
 }
 .cheatsheet .vmorse {
   font-family: "Morse";

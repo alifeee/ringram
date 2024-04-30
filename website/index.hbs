@@ -71,15 +71,8 @@ pagination:
     <header>
         <h1>Morse Puzzles</h1>
     </header>
-    <main>
-        {{#with puzzle}}
-        <form id="puzzle"
-            {{#if ( eq 4 ( length letters ) )}}
-                class="four"
-            {{/if}}
-            {{#if ( eq 3 ( length letters ) )}}
-                class="three"
-            {{/if}}
+    <main
+    {{#with puzzle}}
         x-data='{
             letter0: "{{getindex (flatten letters) 0}}",
             letter1: "{{getindex (flatten letters) 1}}",
@@ -93,6 +86,12 @@ pagination:
             letter9: "{{getindex (flatten letters) 9}}",
             letter10: "{{getindex (flatten letters) 10}}",
             letter11: "{{getindex (flatten letters) 11}}",
+            selected: -1,
+            showonlyvalid: false,
+            dotsTop: [{{dots-top}}],
+            dotsLeft: [{{dots-left}}],
+            dashesRight: [{{dashes-right}}],
+            dashesBottom: [{{dashes-bottom}}],
             {{#if ( eq 4 ( length letters ) )}}
             get letters () {
                 return [
@@ -110,6 +109,21 @@ pagination:
                     [this.letter3, this.letter5, this.letter7, this.letter11],
                 ]
             },
+            rowOf(index) {
+                if (index < 0) return -1;
+                else if (index <= 3) return 0;
+                else if (index <= 5) return 1;
+                else if (index <= 7) return 2;
+                else if (index <= 11) return 3;
+                else return -1;
+            },
+            columnOf(index) {
+                if ([0, 4, 6, 8].includes(index)) return 0;
+                else if ([1, 9].includes(index)) return 1;
+                else if ([2, 10].includes(index)) return 2;
+                else if ([3, 5, 7, 11].includes(index)) return 3;
+                else return -1;
+            },
             {{/if}}
             {{#if ( eq 3 ( length letters ) )}}
             get letters () {
@@ -126,6 +140,19 @@ pagination:
                     [this.letter2, this.letter4, this.letter7],
                 ]
             },
+            rowOf(index) {
+                if (index < 0) return -1;
+                else if (index <= 2) return 0;
+                else if (index <= 4) return 1;
+                else if (index <= 7) return 2;
+                else return -1;
+            },
+            columnOf(index) {
+                if ([0, 3, 5].includes(index)) return 0;
+                else if ([1, 6].includes(index)) return 1;
+                else if ([2, 4, 7].includes(index)) return 2;
+                else return -1;
+            },
             {{/if}}
             get rows() {
                 return this.letters.map(listToDotsDashes)
@@ -133,7 +160,32 @@ pagination:
             get columns() {
                 return this.lettersTransposed.map(listToDotsDashes)
             },
-        }'>
+            get minDotsAvailable() {
+                if (this.selected == -1) return 999;
+                return Math.min(
+                    this.dotsLeft[this.rowOf(this.selected)] - this.rows[this.rowOf(this.selected)].dots,
+                    this.dotsTop[this.columnOf(this.selected)] - this.columns[this.columnOf(this.selected)].dots
+                );
+            },
+            get minDashesAvailable() {
+                if (this.selected == -1) return 999;
+                return Math.min(
+                    this.dashesRight[this.rowOf(this.selected)] - this.rows[this.rowOf(this.selected)].dashes,
+                    this.dashesBottom[this.columnOf(this.selected)] - this.columns[this.columnOf(this.selected)].dashes
+                );
+            }
+        }'
+        {{/with}}
+    >
+        {{#with puzzle}}
+        <form id="puzzle"
+            {{#if ( eq 4 ( length letters ) )}}
+                class="four"
+            {{/if}}
+            {{#if ( eq 3 ( length letters ) )}}
+                class="three"
+            {{/if}}
+        >
             <!-- centre -->
             <div class="centre"></div>
 
@@ -195,11 +247,55 @@ pagination:
             {{!-- go to prev input on left --}}
             {{!-- go to prev input on backspace --}}
             {{!-- go to next input on right--}}
-            <input type="text" maxlength="1" x-model="letter{{@index}}" {{#if @first}}{{else}}x-on:keydown.backspace.throttle="if ($event.target.value === '') {findTabStop(-1, $event.target).focus()}"{{/if}} {{#if @first}}{{else}}x-on:keydown.left.prevent="findTabStop(-1, $event.target).focus()"{{/if}} {{#if @last}}{{else}}x-on:keydown.right="findTabStop(1, $event.target).focus()"{{/if}}/>
+            <input type="text" maxlength="1" x-model="letter{{@index}}" {{#if @first}}{{else}}x-on:keydown.backspace.throttle="if ($event.target.value === '') {findTabStop(-1, $event.target).focus()}"{{/if}} {{#if @first}}{{else}}x-on:keydown.left.prevent="findTabStop(-1, $event.target).focus()"{{/if}} {{#if @last}}{{else}}x-on:keydown.right="findTabStop(1, $event.target).focus()"{{/if}} x-on:focus="selected={{@index}}" x-on:focusout="selected=-1"/>
             {{/if}}
             {{/each}}
         </form>
         {{/with}}
+
+        {{!-- debugging for currently selected input and remaining dots/dashes --}}
+        {{!-- <div>
+            selected: <span x-text="selected"></span>
+            <br>
+            row: <span x-text="rowOf(selected)"></span>
+            <template x-if="rowOf(selected) != -1">
+                <div>
+                    <br>
+                    dots-total: <span x-text="dotsLeft[rowOf(selected)]"></span>
+                    dashes-total: <span x-text="dashesRight[rowOf(selected)]"></span>
+                    <br>
+                    dots-used: <span x-text="rows[rowOf(selected)].dots"></span>
+                    dashes-used: <span x-text="rows[rowOf(selected)].dashes"></span>
+                    <br>
+                    dots-remaining: <span x-text="dotsLeft[rowOf(selected)] - rows[rowOf(selected)].dots"></span>
+                    dashes-remaining: <span x-text="dashesRight[rowOf(selected)] - rows[rowOf(selected)].dashes"></span>
+                </div>
+            </template>
+            <br>
+            col: <span x-text="columnOf(selected)"></span>
+            <template x-if="columnOf(selected) != -1">
+                <div>
+                    <br>
+                    dots-total: <span x-text="dotsTop[columnOf(selected)]"></span>
+                    dashes-total: <span x-text="dashesBottom[columnOf(selected)]"></span>
+                    <br>
+                    dots-used: <span x-text="columns[columnOf(selected)].dots"></span>
+                    dashes-used: <span x-text="columns[columnOf(selected)].dashes"></span>
+                    <br>
+                    dots-remaining: <span x-text="dotsTop[columnOf(selected)] - columns[columnOf(selected)].dots"></span>
+                    dashes-remaining: <span x-text="dashesBottom[columnOf(selected)] - columns[columnOf(selected)].dashes"></span>
+                </div>
+            </template>
+            <template x-if="selected != -1">
+                <div>
+                    <br>
+                    minimum dots available: <span x-text="minDotsAvailable"></span>
+                    or <span x-text="Math.min(dotsLeft[rowOf(selected)] - rows[rowOf(selected)].dots, dotsTop[columnOf(selected)] - columns[columnOf(selected)].dots)"></span>
+                    minimum dashes available: <span x-text="minDashesAvailable"></span>
+                    or <span x-text="Math.min(dashesRight[rowOf(selected)] - rows[rowOf(selected)].dashes, dashesBottom[columnOf(selected)] - columns[columnOf(selected)].dashes)"></span>
+                </div>
+            </template>
+        </div> --}}
 
         <section class="nextprev">
         {{#if pagination.previous}}
@@ -223,10 +319,12 @@ pagination:
         </section>
 
         <section class="morse" x-data="{ vmorse: false }">
-            <div>
+            <form>
                 <label for="vmorse">Use VMORSE</label>
                 <input type="checkbox" id="vmorse" x-model="vmorse" />
-            </div>
+                <label for="showonlyvalid">Show only valid letters</label>
+                <input type="checkbox" id="showonlyvalid" x-model="showonlyvalid" />
+            </form>
             <section class="cheatsheet">
                 {{#each morse}}
                 <template x-if="vmorse">
@@ -235,7 +333,10 @@ pagination:
                     </div>
                 </template>
                 <template x-if="!vmorse">
-                    <div class="translation">
+                    <div
+                        class="translation"
+                        :class="showonlyvalid && ({{ndots this}} > minDotsAvailable || {{ndashes this}} > minDashesAvailable) ? 'unavailable' : ''"
+                    >
                         <span class="original">
                             {{@key}}
                         </span>
