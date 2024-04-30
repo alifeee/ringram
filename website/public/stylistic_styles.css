@@ -183,6 +183,7 @@ main {
   height: 0.75rem;
   border-radius: 50%;
   background-color: var(--unused-colour-dot);
+  flex-shrink: 0;
 }
 .dots {
   display: flex;
