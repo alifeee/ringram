@@ -318,15 +318,68 @@ pagination:
         {{/if}}
         </section>
 
-        <section class="morse" x-data="{ vmorse: false }">
+        <section class="morse" x-data="{
+            vmorse: false,
+            highlightvowels: false,
+            filterdots: 0,
+            filterdashes: 0,
+            sort: 'alphabet',
+            sortReverse: false,
+            doSort: function() {
+                const list = document.querySelector('section.cheatsheet');
+
+                let datatag;
+                let compare = this.sortReverse ? -1 : 1;
+                if (this.sort == 'alphabet') {
+                    datatag = 'data-sort-alphabet';
+                } else if (this.sort == 'dots') {
+                    datatag = 'data-sort-dots';
+                    compare *= -1;
+                } else if (this.sort == 'dashes') {
+                    datatag = 'data-sort-dashes';
+                    compare *= -1;
+                }
+
+                [...list.children]
+                    .sort((a, b) => a.getAttribute(datatag) > b.getAttribute(datatag) ? compare : compare * -1)
+                    .forEach(node => list.appendChild(node));
+            }
+            }" x-init="
+            $watch('sort', val => {
+                doSort()
+            });
+            $watch('sortReverse', val => {
+                doSort()
+            });
+            ">
             <form>
                 <label for="vmorse">Use VMORSE</label>
                 <input type="checkbox" id="vmorse" x-model="vmorse" />
                 <label for="showonlyvalid">Show only valid letters</label>
                 <input type="checkbox" id="showonlyvalid" x-model="showonlyvalid" />
+                <label for="highlightvowels">Highlight vowels</label>
+                <input type="checkbox" id="highlightvowels" x-model="highlightvowels" />
+                <br>
+                <label for="filterdots">Filter dots</label>
+                <input type="number" id="filterdots" x-model="filterdots" min="0" max="4">
+                <label for="filterdashes">Filter dashes</label>
+                <input type="number" id="filterdashes" x-model="filterdashes" min="0" max="3">
+                <br>
+                <fieldset>
+                    <legend>Sort</legend>
+                    <input type="radio" id="sort-alphabet" name="sort" value="alphabet" x-model="sort">
+                    <label for="sort-alphabet">Alphabetically</label>
+                    <input type="radio" id="sort-dots" name="sort" value="dots" x-model="sort">
+                    <label for="sort-dots">By Dots</label>
+                    <input type="radio" id="sort-dashes" name="sort" value="dashes" x-model="sort">
+                    <label for="sort-dashes">By Dashes</label>                    
+                </fieldset>
+                <label for="sortReverse">Reverse sort?</label>
+                <input type="checkbox" id="sortReverse" x-model="sortReverse">
             </form>
             <section class="cheatsheet">
                 {{#each morse}}
+                <div class="letter" data-sort-alphabet="{{@key}}" data-sort-dots="{{ndots this}}" data-sort-dashes="{{ndashes this}}">
                 <template x-if="vmorse">
                     <div class="translation">
                         {{@key}}: <span class="vmorse">{{@key}}</span>
@@ -335,7 +388,18 @@ pagination:
                 <template x-if="!vmorse">
                     <div
                         class="translation"
-                        :class="showonlyvalid && ({{ndots this}} > minDotsAvailable || {{ndashes this}} > minDashesAvailable) ? 'unavailable' : ''"
+                        :class="(
+                            showonlyvalid
+                            && ({{ndots this}} > minDotsAvailable || {{ndashes this}} > minDashesAvailable)
+                        )
+                        || (highlightvowels
+                            && !['A','E','I','O','U','Y'].includes('{{@key}}')
+                        )
+                        || (
+                            (filterdots > 0 || filterdashes > 0)
+                            && (filterdots != {{ndots this}} || filterdashes != {{ndashes this}})
+                        )
+                        ? 'unavailable' : ''"
                     >
                         <span class="original">
                             {{@key}}
@@ -351,6 +415,7 @@ pagination:
                         </span>
                     </div>
                 </template>
+                </div>
                 {{/each}}
             </section>
         </section>

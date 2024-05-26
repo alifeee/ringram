@@ -7,18 +7,16 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
 ## Nice features
 
 - UI
-  - "show solution" button
-  - "check solution" button
-  - grey-out letters that don't fit in highlighted cell
+  - "show solution" button - currently each page does not *know* the solution - could either
+    - send solution to page (hidden?)
+    - request the solution from the server
+    - send the word list and algorithmically solve the puzzle in JS (this is worth writing anyway to check if puzzles have a unique solution, or more than one)
+  - "check solution" button - this can either do:
+    - simple: check if the expected dots/dashes match used dots/dashes (might get nonsense/wrong solution)
+    - complex: checek against solution (see above for how to get solution)
   - "clear" button
-  - there is no "red" dot/dash if the row/column has 0 to begin with
   - press up/down arrow keys to move box (if cursor is in reasonable place)
       logic: if a key is pressed (up), collect a list of inputs which are reasonable and (e.g., with a function which turns flat inputs into a list of "0, 3, and 6 are above you!". Then, filter for "disabled", and if there's one left...) focus it!
-  - pressing backspace/left/right skips over disabled inputs
-  - toggle/inputs on cheat sheet for:
-    - hide/show vowels
-    - hide/show letters with "exactly N dots & M dashes"
-    - sort letters by number of dots/number of dashes/alphabetically
 - hashing & generating
   - think of puzzle hash (type (4x4, 3x3), number of dots/dashes plus starting letters)
   - think of solution hash (just the 12 letters)
