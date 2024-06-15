@@ -28,9 +28,11 @@ See [`./website/`](./website/) and [`./generation/`](./generation/)
   - make "hard" puzzle (with O letters revealed)
 - usability features
   - save state (entered letters) in local storage (but only for specific puzzle hash)
+  - add statistics
 - style
   - wrap dots when more than X
   - make style a bit cooler
+  - add how to play guide
   - add footer with references
   - check on different device sizes
   - check on different browsers

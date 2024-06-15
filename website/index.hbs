@@ -68,6 +68,14 @@ pagination:
 </head>
 
 <body>
+    <header>
+        <h1>
+            RINGRAM
+            <a href="#tutorial" class="help">
+                <span>?</span>
+            </a>
+        </h1>
+    </header>
     <main
     {{#with puzzle}}
         x-data='{
@@ -177,10 +185,10 @@ pagination:
         {{#with puzzle}}
         <form id="puzzle"
             {{#if ( eq 4 ( length letters ) )}}
-                class="four"
+                class="four puzzle"
             {{/if}}
             {{#if ( eq 3 ( length letters ) )}}
-                class="three"
+                class="three puzzle"
             {{/if}}
         >
             <!-- centre -->
@@ -295,24 +303,8 @@ pagination:
         </div> --}}
 
         <section class="nextprev">
-        {{#if pagination.previous}}
-            {{#if (eq pagination.pageNumber 1)}}
-            <a href="../">Previous</a>
-            {{else}}
-            <a href="../{{add pagination.pageNumber -1}}">Previous</a>
-            {{/if}}
-            {{else}}
-            <span>Previous</span>
-        {{/if}}
-        {{#if pagination.next}}
-            {{#if (eq pagination.pageNumber 0)}}
-            <a href="./{{add pagination.pageNumber 1}}">Next</a>
-            {{else}}
-            <a href="../{{add pagination.pageNumber 1}}">Next</a>
-            {{/if}}
-            {{else}}
-            <span>Next</span>
-        {{/if}}
+            <a href="/">today's 3x3</a>
+            <a href="/1">today's 4x4</a>
         </section>
 
         <section class="morse" x-data="{
@@ -418,7 +410,126 @@ pagination:
                 {{/each}}
             </section>
         </section>
+        <section class="tutorial" id="tutorial">
+            <h2>How to play Ringram</h2>
+            <p>
+                A completed Ringram puzzle looks like four English words
+            </p>
+            <div class="three puzzle">
+                <div class="centre"></div>
+                <input type="text" value="B" disabled />
+                <input type="text" value="A" disabled />
+                <input type="text" value="T" disabled />
+                <input type="text" value="U" disabled />
+                <input type="text" value="O" disabled />
+                <input type="text" value="N" disabled />
+                <input type="text" value="E" disabled />
+                <input type="text" value="T" disabled />
+            </div>
+            <p>
+                Each letter is represented by a series of dots and dashes (morse code!). For example, in Morse Code, the letter A is one dot followed by one dash: <span class="dot used inline-block"></span> <span class="dash used inline-block"></span>.
+                The word BAT would be:
+                <span class="dash used inline-block"></span>
+                <span class="dot used inline-block"></span>
+                <span class="dot used inline-block"></span>
+                <span class="dot used inline-block"></span>
+                /
+                <span class="dot used inline-block"></span>
+                <span class="dash used inline-block"></span>
+                /
+                <span class="dash used inline-block"></span>
+                , a total of 4 dots and 3 dashes
+            </p>
+            <p>
+                The puzzle grid shows the total number of dots and dashes in each column and row.
+            </p>
+            <div class="three puzzle">
+                <input type="text" value="B" disabled />
+                <input type="text" value="A" disabled />
+                <input type="text" value="T" disabled />
+                <div class="left dots _0">
+                    <div class="dot used"></div>
+                    <div class="dot used"></div>
+                    <div class="dot used"></div>
+                    <div class="dot used"></div>
+                </div>
+                <div class="right dashes _0">
+                    <div class="dash used"></div>
+                    <div class="dash used"></div>
+                    <div class="dash used"></div>
+                </div>
+            </div>
+            <p>
+                In Ringram, use the Morse Code clues to find the missing letters and solve the grid! Dots and dashes are coloured when they are used up, or red if too many are used.
+            </p>
+            <div class="three puzzle">
+                <input type="text" value="B" disabled />
+                <input type="text" value="" disabled />
+                <input type="text" value="" disabled />
+                <div class="left dots _0">
+                    <div class="dot used"></div>
+                    <div class="dot used"></div>
+                    <div class="dot used"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="right dashes _0">
+                    <div class="dash used"></div>
+                    <div class="dash"></div>
+                    <div class="dash"></div>
+                </div>
+            </div>
+            <br>
+            <div class="three puzzle">
+                <input type="text" value="B" disabled />
+                <input type="text" value="U" disabled />
+                <input type="text" value="N" disabled />
+                <div class="left dots _0">
+                    <div class="dot used"></div>
+                    <div class="dot used"></div>
+                    <div class="dot used"></div>
+                    <div class="dot used"></div>
+                    <div class="dot over" style="animation: none"></div>
+                    <div class="dot over" style="animation: none"></div>
+                </div>
+                <div class="right dashes _0">
+                    <div class="dash used"></div>
+                    <div class="dash used"></div>
+                    <div class="dash used"></div>
+                </div>
+            </div>
+            <p>
+                The puzzle is complete if you can fill in the grid with English words! (solution checker coming soon)
+            </p>
+        </section>
+        <section class="faq" id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <h3>Can I see yesterday's puzzle?</h3>
+            <div class="nextprev">
+                <a href="/2">yesterday's 3x3 solution</a>
+                <a href="/3">yesterday's 4x4 solution</a>
+            </div>
+            <h3>When does the new puzzle come out?</h3>
+            <p>
+                Midnight in <a href="https://time.is/UTC">UTC</a>
+            </p>
+            <h3>Can I get more puzzles?</h3>
+            <p>
+                No. Come back tomorrow!
+            </p>
+            <h3>Can I suggest a feature?</h3>
+            <p>
+                Sure! Send an email below.
+            </p>
+            <h3>Can I save my guesses if I refresh/save my stats?</h3>
+            <p>
+                Not yet. Maybe later :)
+            </p>
+        </section>
     </main>
+    <footer>
+        <p>
+            created by <a href="https://alexvscoding.itch.io/">alexvscoding</a> & <a href="https://alifeee.co.uk">alifeee</a> (<a href="mailto:ringram@alfierenn.dev">email</a>) · <a href="https://github.com/alifeee/ringram">view source</a>
+        </p>
+    </footer>
 </body>
-
 </html>

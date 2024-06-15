@@ -47,10 +47,39 @@ body {
   min-height: 100vh;
   font-family: "Arvo", serif;
 }
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 0;
+}
 h1 {
-  font-family: "Morse";
   font-size: 3em;
   text-align: center;
+  position: relative;
+}
+.help {
+  position: absolute;
+  right: -2.5rem;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  border-radius: 50%;
+  border: 3px solid black;
+  font-weight: 900;
+  height: 2rem;
+  width: 2rem;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.help span {
+  display: block;
 }
 main {
   margin: 2rem 0;
@@ -59,10 +88,12 @@ main {
   grid-template-areas:
     "puzzle"
     "nextprev"
-    "morse";
+    "morse"
+    "tutorial"
+    "faq";
 }
 
-#puzzle {
+.puzzle {
   grid-area: puzzle;
 }
 .nextprev {
@@ -76,15 +107,17 @@ main {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "puzzle morse"
-      "nextprev morse";
+      "nextprev morse"
+      "tutorial tutorial"
+      "faq faq";
   }
 }
 
-#puzzle .centre {
+.puzzle .centre {
   background-color: var(--centre-colour);
 }
 
-#puzzle input {
+.puzzle input {
   border-radius: 0;
   width: 3rem;
   height: 3rem;
@@ -102,11 +135,11 @@ main {
   text-transform: uppercase;
   font-family: "Arvo", serif;
 }
-#puzzle input:focus {
+.puzzle input:focus {
   outline: none;
   border-width: var(--selected-border-width);
 }
-#puzzle input:disabled {
+.puzzle input:disabled {
   background-color: var(--input-set-colour);
 }
 
@@ -233,6 +266,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   margin: 1rem;
 }
 .nextprev a,
@@ -310,7 +344,7 @@ section.morse .filterdots {
 }
 
 @media screen and (max-width: 600px) {
-  #puzzle input {
+  .puzzle input {
     width: 2rem;
     height: 2rem;
     font-size: 1rem;
@@ -330,4 +364,33 @@ section.morse .filterdots {
   .cheatsheet .translation {
     font-size: 1.5rem;
   }
+}
+
+.tutorial,
+.faq {
+  display: flex;
+  flex-direction: column;
+  grid-area: tutorial;
+  margin: 1rem;
+  align-items: center;
+}
+.tutorial > * {
+  max-width: 40rem;
+}
+.inline-block {
+  display: inline-block;
+}
+
+.faq {
+  grid-area: faq;
+}
+.faq h3 {
+  margin: 0;
+}
+
+footer {
+  margin: auto 1rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: end;
 }

@@ -7,7 +7,7 @@ _  _            _  _
 
 */
 
-#puzzle.four {
+.puzzle.four {
   display: grid;
   grid-template-columns: 1fr auto auto auto auto 1fr;
   grid-template-rows: 1fr auto auto auto auto 1fr;
@@ -20,114 +20,114 @@ _  _            _  _
     ".  fb fc fd fe . ";
 }
 
-#puzzle.four > .centre {
+.puzzle.four > .centre {
   grid-area: mm;
 }
 
-#puzzle.four input:nth-of-type(1) {
+.puzzle.four input:nth-of-type(1) {
   grid-area: bb;
   border-top-width: var(--outer-border-width);
   border-left-width: var(--outer-border-width);
   border-top-left-radius: var(--outer-border-radius);
 }
-#puzzle.four input:nth-of-type(2) {
+.puzzle.four input:nth-of-type(2) {
   grid-area: bc;
   border-top-width: var(--outer-border-width);
 }
-#puzzle.four input:nth-of-type(3) {
+.puzzle.four input:nth-of-type(3) {
   grid-area: bd;
   border-top-width: var(--outer-border-width);
 }
-#puzzle.four input:nth-of-type(4) {
+.puzzle.four input:nth-of-type(4) {
   grid-area: be;
   border-top-width: var(--outer-border-width);
   border-right-width: var(--outer-border-width);
   border-top-right-radius: var(--outer-border-radius);
 }
-#puzzle.four input:nth-of-type(5) {
+.puzzle.four input:nth-of-type(5) {
   grid-area: cb;
   border-left-width: var(--outer-border-width);
 }
-#puzzle.four input:nth-of-type(6) {
+.puzzle.four input:nth-of-type(6) {
   grid-area: ce;
   border-right-width: var(--outer-border-width);
 }
-#puzzle.four input:nth-of-type(7) {
+.puzzle.four input:nth-of-type(7) {
   grid-area: db;
   border-left-width: var(--outer-border-width);
 }
-#puzzle.four input:nth-of-type(8) {
+.puzzle.four input:nth-of-type(8) {
   grid-area: de;
   border-right-width: var(--outer-border-width);
 }
-#puzzle.four input:nth-of-type(9) {
+.puzzle.four input:nth-of-type(9) {
   grid-area: eb;
   border-bottom-width: var(--outer-border-width);
   border-left-width: var(--outer-border-width);
   border-bottom-left-radius: var(--outer-border-radius);
 }
-#puzzle.four input:nth-of-type(10) {
+.puzzle.four input:nth-of-type(10) {
   grid-area: ec;
   border-bottom-width: var(--outer-border-width);
 }
-#puzzle.four input:nth-of-type(11) {
+.puzzle.four input:nth-of-type(11) {
   grid-area: ed;
   border-bottom-width: var(--outer-border-width);
 }
-#puzzle.four input:nth-of-type(12) {
+.puzzle.four input:nth-of-type(12) {
   grid-area: ee;
   border-bottom-width: var(--outer-border-width);
   border-right-width: var(--outer-border-width);
   border-bottom-right-radius: var(--outer-border-radius);
 }
 
-#puzzle.four .top.dots._0 {
+.puzzle.four .top.dots._0 {
   grid-area: ab;
 }
-#puzzle.four .top.dots._1 {
+.puzzle.four .top.dots._1 {
   grid-area: ac;
 }
-#puzzle.four .top.dots._2 {
+.puzzle.four .top.dots._2 {
   grid-area: ad;
 }
-#puzzle.four .top.dots._3 {
+.puzzle.four .top.dots._3 {
   grid-area: ae;
 }
-#puzzle.four .left.dots._0 {
+.puzzle.four .left.dots._0 {
   grid-area: ba;
 }
-#puzzle.four .left.dots._1 {
+.puzzle.four .left.dots._1 {
   grid-area: ca;
 }
-#puzzle.four .left.dots._2 {
+.puzzle.four .left.dots._2 {
   grid-area: da;
 }
-#puzzle.four .left.dots._3 {
+.puzzle.four .left.dots._3 {
   grid-area: ea;
 }
 
-#puzzle.four .bottom.dashes._0 {
+.puzzle.four .bottom.dashes._0 {
   grid-area: fb;
 }
-#puzzle.four .bottom.dashes._1 {
+.puzzle.four .bottom.dashes._1 {
   grid-area: fc;
 }
-#puzzle.four .bottom.dashes._2 {
+.puzzle.four .bottom.dashes._2 {
   grid-area: fd;
 }
-#puzzle.four .bottom.dashes._3 {
+.puzzle.four .bottom.dashes._3 {
   grid-area: fe;
 }
-#puzzle.four .right.dashes._0 {
+.puzzle.four .right.dashes._0 {
   grid-area: bf;
 }
-#puzzle.four .right.dashes._1 {
+.puzzle.four .right.dashes._1 {
   grid-area: cf;
 }
-#puzzle.four .right.dashes._2 {
+.puzzle.four .right.dashes._2 {
   grid-area: df;
 }
-#puzzle.four .right.dashes._3 {
+.puzzle.four .right.dashes._3 {
   grid-area: ef;
 }
 
@@ -140,7 +140,7 @@ _  _            _  _
 
 */
 
-#puzzle.three {
+.puzzle.three {
   display: grid;
   grid-template-columns: 1fr auto auto auto 1fr;
   grid-template-rows: 1fr auto auto auto 1fr;
@@ -152,85 +152,85 @@ _  _            _  _
     ".  eb ec ed . ";
 }
 
-#puzzle.three > .centre {
+.puzzle.three > .centre {
   grid-area: mm;
 }
 
-#puzzle.three input:nth-of-type(1) {
+.puzzle.three input:nth-of-type(1) {
   grid-area: bb;
   border-top-width: var(--outer-border-width);
   border-left-width: var(--outer-border-width);
   border-top-left-radius: var(--outer-border-radius);
 }
-#puzzle.three input:nth-of-type(2) {
+.puzzle.three input:nth-of-type(2) {
   grid-area: bc;
   border-top-width: var(--outer-border-width);
 }
-#puzzle.three input:nth-of-type(3) {
+.puzzle.three input:nth-of-type(3) {
   grid-area: bd;
   border-top-width: var(--outer-border-width);
   border-right-width: var(--outer-border-width);
   border-top-right-radius: var(--outer-border-radius);
 }
-#puzzle.three input:nth-of-type(4) {
+.puzzle.three input:nth-of-type(4) {
   grid-area: cb;
   border-left-width: var(--outer-border-width);
 }
-#puzzle.three input:nth-of-type(5) {
+.puzzle.three input:nth-of-type(5) {
   grid-area: cd;
   border-right-width: var(--outer-border-width);
 }
-#puzzle.three input:nth-of-type(6) {
+.puzzle.three input:nth-of-type(6) {
   grid-area: db;
   border-bottom-width: var(--outer-border-width);
   border-left-width: var(--outer-border-width);
   border-bottom-left-radius: var(--outer-border-radius);
 }
-#puzzle.three input:nth-of-type(7) {
+.puzzle.three input:nth-of-type(7) {
   grid-area: dc;
   border-bottom-width: var(--outer-border-width);
 }
-#puzzle.three input:nth-of-type(8) {
+.puzzle.three input:nth-of-type(8) {
   grid-area: dd;
   border-bottom-width: var(--outer-border-width);
   border-right-width: var(--outer-border-width);
   border-bottom-right-radius: var(--outer-border-radius);
 }
 
-#puzzle.three .top.dots._0 {
+.puzzle.three .top.dots._0 {
   grid-area: ab;
 }
-#puzzle.three .top.dots._1 {
+.puzzle.three .top.dots._1 {
   grid-area: ac;
 }
-#puzzle.three .top.dots._2 {
+.puzzle.three .top.dots._2 {
   grid-area: ad;
 }
-#puzzle.three .left.dots._0 {
+.puzzle.three .left.dots._0 {
   grid-area: ba;
 }
-#puzzle.three .left.dots._1 {
+.puzzle.three .left.dots._1 {
   grid-area: ca;
 }
-#puzzle.three .left.dots._2 {
+.puzzle.three .left.dots._2 {
   grid-area: da;
 }
 
-#puzzle.three .bottom.dashes._0 {
+.puzzle.three .bottom.dashes._0 {
   grid-area: eb;
 }
-#puzzle.three .bottom.dashes._1 {
+.puzzle.three .bottom.dashes._1 {
   grid-area: ec;
 }
-#puzzle.three .bottom.dashes._2 {
+.puzzle.three .bottom.dashes._2 {
   grid-area: ed;
 }
-#puzzle.three .right.dashes._0 {
+.puzzle.three .right.dashes._0 {
   grid-area: be;
 }
-#puzzle.three .right.dashes._1 {
+.puzzle.three .right.dashes._1 {
   grid-area: ce;
 }
-#puzzle.three .right.dashes._2 {
+.puzzle.three .right.dashes._2 {
   grid-area: de;
 }
