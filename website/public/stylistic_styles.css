@@ -24,6 +24,8 @@
   --selected-border-width: 2px;
   --outer-border-radius: 0.25rem;
 
+  --clickable-text-color: #008;
+
   /* padding between dots/dashes and grid outline */
   --dotdash-padding: 0.75rem;
 }
@@ -51,6 +53,7 @@ h1 {
   text-align: center;
 }
 main {
+  margin: 2rem 0;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -258,10 +261,26 @@ section.morse {
   align-items: center;
   gap: 1rem;
 }
+section.morse form {
+  margin: 1rem;
+}
 section.morse form input[type="checkbox"] {
   width: 1rem;
   height: 1rem;
 }
+section.morse .showfilter {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--clickable-text-color);
+}
+section.morse .showfilter:hover {
+  cursor: pointer;
+}
+section.morse .filterdots {
+  min-width: 10rem;
+}
+
 .cheatsheet {
   width: 100%;
   display: grid;

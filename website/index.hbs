@@ -316,6 +316,7 @@ pagination:
         </section>
 
         <section class="morse" x-data="{
+            showMore: false,
             vmorse: false,
             highlightvowels: false,
             filterdots: 0,
@@ -349,69 +350,70 @@ pagination:
                 doSort()
             });
             ">
-            <form>
-                <label for="vmorse">Use VMORSE</label>
-                <input type="checkbox" id="vmorse" x-model="vmorse" />
-                <label for="showonlyvalid">Show only valid letters</label>
-                <input type="checkbox" id="showonlyvalid" x-model="showonlyvalid" />
-                <label for="highlightvowels">Highlight vowels</label>
-                <input type="checkbox" id="highlightvowels" x-model="highlightvowels" />
-                <br>
-                <label for="filterdots">Filter dots</label>
-                <input type="number" id="filterdots" x-model="filterdots" min="0" max="4">
-                <label for="filterdashes">Filter dashes</label>
-                <input type="number" id="filterdashes" x-model="filterdashes" min="0" max="3">
-                <br>
-                <fieldset>
-                    <legend>Sort</legend>
-                    <input type="radio" id="sort-alphabet" name="sort" value="alphabet" x-model="sort">
-                    <label for="sort-alphabet">Alphabetically</label>
-                    <input type="radio" id="sort-dots" name="sort" value="dots" x-model="sort">
-                    <label for="sort-dots">By Dots</label>
-                    <input type="radio" id="sort-dashes" name="sort" value="dashes" x-model="sort">
-                    <label for="sort-dashes">By Dashes</label>                    
-                </fieldset>
-                <label for="sortReverse">Reverse sort?</label>
-                <input type="checkbox" id="sortReverse" x-model="sortReverse">
-            </form>
+            <template x-if="!showMore">
+                <button class="showfilter" role="button" x-on:click="showMore = true">show filtering options</button>
+            </template>
+            <template x-if="showMore">
+                <form>
+                    {{!-- only valid letters makes things too easy --}}
+                    {{!-- <label for="showonlyvalid">Show only valid letters</label>
+                    <input type="checkbox" id="showonlyvalid" x-model="showonlyvalid" /> --}}
+                    <label for="highlightvowels">Highlight vowels</label>
+                    <input type="checkbox" id="highlightvowels" x-model="highlightvowels" />
+                    <br>
+                    <label class="filterdots" for="filterdots">Filter dots (<span x-text="filterdots"></span>)</label>
+                    <input type="range" id="filterdots" x-model="filterdots" min="0" max="4" step="1">
+                    <br>
+                    <label class="filterdashes" for="filterdashes">Filter dashes (<span x-text="filterdashes"></span>)</label>
+                    <input type="range" id="filterdashes" x-model="filterdashes" min="0" max="3" step="1">
+                    <br>
+                    <fieldset>
+                        <legend>Sort</legend>
+                        <input type="radio" id="sort-alphabet" name="sort" value="alphabet" x-model="sort">
+                        <label for="sort-alphabet">Alphabetically</label>
+                        <input type="radio" id="sort-dots" name="sort" value="dots" x-model="sort">
+                        <label for="sort-dots">By Dots</label>
+                        <input type="radio" id="sort-dashes" name="sort" value="dashes" x-model="sort">
+                        <label for="sort-dashes">By Dashes</label>
+                        <br>
+                        <input type="checkbox" id="sortReverse" x-model="sortReverse">
+                        <label for="sortReverse">Reverse?</label>
+                    </fieldset>
+                    <br>
+                    <button class="showfilter" role="button" x-on:click="showMore = false">hide filtering options</button>
+                </form>
+            </template>
             <section class="cheatsheet">
                 {{#each morse}}
                 <div class="letter" data-sort-alphabet="{{@key}}" data-sort-dots="{{ndots this}}" data-sort-dashes="{{ndashes this}}">
-                <template x-if="vmorse">
-                    <div class="translation">
-                        {{@key}}: <span class="vmorse">{{@key}}</span>
-                    </div>
-                </template>
-                <template x-if="!vmorse">
-                    <div
-                        class="translation"
-                        :class="(
-                            showonlyvalid
-                            && ({{ndots this}} > minDotsAvailable || {{ndashes this}} > minDashesAvailable)
-                        )
-                        || (highlightvowels
-                            && !['A','E','I','O','U','Y'].includes('{{@key}}')
-                        )
-                        || (
-                            (filterdots > 0 || filterdashes > 0)
-                            && (filterdots != {{ndots this}} || filterdashes != {{ndashes this}})
-                        )
-                        ? 'unavailable' : ''"
-                    >
-                        <span class="original">
-                            {{@key}}
-                        </span>
-                        <span class="morse">
-                        {{#each (strToList this)}}
-                            {{#if (eq this ".")}}
-                            <div class="dot used"></div>
-                            {{else}}
-                            <div class="dash used"></div>
-                            {{/if}}
-                        {{/each}}
-                        </span>
-                    </div>
-                </template>
+                <div
+                    class="translation"
+                    :class="(
+                        showonlyvalid
+                        && ({{ndots this}} > minDotsAvailable || {{ndashes this}} > minDashesAvailable)
+                    )
+                    || (highlightvowels
+                        && !['A','E','I','O','U','Y'].includes('{{@key}}')
+                    )
+                    || (
+                        (filterdots > 0 || filterdashes > 0)
+                        && (filterdots != {{ndots this}} || filterdashes != {{ndashes this}})
+                    )
+                    ? 'unavailable' : ''"
+                >
+                    <span class="original">
+                        {{@key}}
+                    </span>
+                    <span class="morse">
+                    {{#each (strToList this)}}
+                        {{#if (eq this ".")}}
+                        <div class="dot used"></div>
+                        {{else}}
+                        <div class="dash used"></div>
+                        {{/if}}
+                    {{/each}}
+                    </span>
+                </div>
                 </div>
                 {{/each}}
             </section>
