@@ -3,3 +3,6 @@
 
 # build
 /_site/
+
+# puzzles! you shouldn't see these ;)
+_data/puzzles.yaml
