@@ -4,6 +4,8 @@ const htmlmin = require("html-minifier");
 module.exports = function (eleventyConfig) {
   // copy static files
   eleventyConfig.addPassthroughCopy({ public: "/" });
+  eleventyConfig.addPassthroughCopy({ "../generation/words_3-letters.txt": "/" });
+  eleventyConfig.addPassthroughCopy({ "../generation/words_4-letters.txt": "/" });
 
   // add support for reading Yaml from `/_data`
   eleventyConfig.addDataExtension("yaml", (contents) =>
