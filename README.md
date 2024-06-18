@@ -108,6 +108,7 @@ H
 ```bash
 mkdir -p /var/www/
 git clone git@github.com:alifeee/ringram.git /var/www/ringram
+cp /var/www/ringram/website/_data/puzzles.yaml.example /var/www/ringram/website/_data/puzzles.yaml
 ```
 
 ### Generate puzzles
