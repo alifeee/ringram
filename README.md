@@ -100,3 +100,54 @@ J Q Y
 FOUR DOTS
 H
 ```
+
+## Installation on a server
+
+### Copy code
+
+```bash
+mkdir -p /var/www/
+git clone git@github.com:alifeee/ringram.git /var/www/ringram
+```
+
+### Generate puzzles
+
+See [generation](./generation) for more
+
+```bash
+cd /var/www/ringran/generation
+python puzzlegen.py -n 3
+python puzzlegen.py -n 4
+python puzzlerank -i puzzles_3x3.txt -o unique > puzzles_3x3_sorted.txt
+python puzzlerank -i puzzles_4x4.txt -o unique > puzzles_4x4_sorted.txt
+```
+
+### Get pushbullet API token
+
+```bash
+cd /var/www/ringram
+echo "PUSHBULLET_API_TOKEN="<pushbullet_token>" > .env
+```
+
+### Install modules for website
+
+```bash
+cd /var/www/ringran/website
+npm install
+npm run build
+```
+
+### Install crontab
+
+There are two: one to generate new words, which runs 12 hours before the one which updates the website (so words can be changed)
+
+```bash
+crontab -e
+```
+
+then put in these cron tasks:
+
+```cron
+0 12 * * * /var/www/ringram/next.sh >> /var/www/ringram/cron.log 2>&1
+0 0 * * * /var/www/ringram/update.sh >> /var/www/ringram/cron.log 2>&1
+```
