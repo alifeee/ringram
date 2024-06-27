@@ -389,6 +389,7 @@ section.morse .filterdots {
   grid-area: tutorial;
   margin: 1rem;
   align-items: center;
+  text-align: center;
 }
 .tutorial > * {
   max-width: 40rem;
@@ -409,4 +410,5 @@ footer {
   display: flex;
   justify-content: center;
   align-items: end;
+  text-align: center;
 }
