@@ -43,10 +43,6 @@ echo "selected: $fourpuzzle" > /dev/stderr
 echo $threepuzzle > $SCRIPT_DIR/next.txt
 echo $fourpuzzle >> $SCRIPT_DIR/next.txt
 
+# notify
 source $SCRIPT_DIR/.env
-curl -H 'Access-Token: '"${PUSHBULLET_API_TOKEN}" \
-  -H "Content-Type: application/json" \
-  --data-binary '{"body": "'"${threepuzzle}; ${fourpuzzle}"'", "title": "next ringram puzzles", "type": "note"}' \
-  --request POST \
-  -o /dev/stderr \
-  https://api.pushbullet.com/v2/pushes
+curl --request POST -o /dev/stderr "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=next+ringram+puzzles:${threepuzzle},+${fourpuzzle}"

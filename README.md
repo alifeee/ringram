@@ -123,11 +123,17 @@ python puzzlerank -i puzzles_3x3.txt -o unique > puzzles_3x3_sorted.txt
 python puzzlerank -i puzzles_4x4.txt -o unique > puzzles_4x4_sorted.txt
 ```
 
-### Get pushbullet API token
+### Get Telegram API token
+
+- message @BotFather to create a bot
+- POST to `https://api.telegram.org/bot<api_token>/getMe` to check API token
+- message bot, then to find the chat id POST to `https://api.telegram.org/bot<api_token>/getUpdates`
+- send a message: POST to `https://api.telegram.org/bot<api_token>/sendMessage?chat_id=<chat_id>&text=hello+world`
 
 ```bash
 cd /var/www/ringram
-echo "PUSHBULLET_API_TOKEN="<pushbullet_token>" > .env
+cp .env.example .env
+nano .env
 ```
 
 ### Install modules for website
