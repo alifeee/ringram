@@ -39,7 +39,7 @@ echo "moving yaml to website..."
 echo -e "${yaml}" > $SCRIPT_DIR/website/_data/puzzles.yaml
 
 echo "installing npm"
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+export NVM_DIR="/usr/alifeee/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm use 20
 

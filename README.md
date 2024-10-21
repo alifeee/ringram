@@ -139,9 +139,22 @@ nano .env
 ### Install modules for website
 
 ```bash
-cd /var/www/ringran/website
+cd /var/www/ringram/website
 npm install
 npm run build
+```
+
+### Install nvm globally
+
+```bash
+# install nvm to /usr/alifeee/nvm
+export XDG_CONFIG_HOME="/usr/alifeee"
+# install nvm, see https://github.com/nvm-sh/nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# install node
+source ~/.bashrc
+nvm install 20
+nvm use 20
 ```
 
 ### Install crontab
